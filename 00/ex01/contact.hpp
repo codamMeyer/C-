@@ -12,6 +12,8 @@ public:
 	std::string darkest_secret;
 	void display_data();
 	void display_lines();
+private:
+	std::string truncate(std::string field);
 };
 
 #endif

@@ -53,8 +53,7 @@ void Yellow_book::add()
 	getline(in_stream, contacts[next].darkest_secret);
 
 	next = (next + 1) % max;
-	if (next > initialized)
-		initialized = initialized + 1;
+	initialized = std::max(next, initialized);
 }
 void Yellow_book::search()
 {
