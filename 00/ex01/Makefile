@@ -23,13 +23,13 @@ $(NAME): $(SRC_FILES) $(HEADER_FILES)
 clean:
 
 test:
-	@g++ -std=c++11 -Wall -I ../../tests -c ../../tests/main.cpp
-	@g++ -std=c++11 -Wall -I ../../tests -o test main.o test.cpp && ./test --success
+	@g++ -std=c++11 -Wall $(SRC_FILES) ../../tests/main.cpp test.cpp -o test && ./test --success
 
 re: fclean all
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f test
 
 run:
 	$(CC) -ggdb3 $(TEST_INC_PATH) $(USER_INC_PATH) $(TEST_FILES) $(USER_LDFLAGS) -o $(TEST_NAME)
