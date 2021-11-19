@@ -1,8 +1,7 @@
 CC=g++
-CFLAGS= -Wall -Werror -Wextra -std=c++98
+CFLAGS= -ggdb -Wall -Werror -Wextra 
 
 NAME=megaphone
-
 
 HEADER_FILES=		\
 	megaphone.hpp	\
@@ -13,10 +12,10 @@ SRC_FILES=			\
 all: $(NAME)
 
 $(NAME): $(SRC_FILES) $(HEADER_FILES)
-	$(CC) $(CFLAGS) main.c $(SRC_FILES) -o $(NAME)
+	$(CC) $(CFLAGS) -std=c++98 main.c $(SRC_FILES) -o $(NAME)
 
-test:
-	@g++ -std=c++11 -Wall $(SRC_FILES) ../../tests/main.cpp test.cpp -o test && ./test --success
+test: test.cpp
+	@$(CC) $(CFLAGS) -std=c++17 $(SRC_FILES) ../../tests/main.cpp test.cpp -o test -lCatch2Main -lCatch2  && ./test --success
 
 clean:
 

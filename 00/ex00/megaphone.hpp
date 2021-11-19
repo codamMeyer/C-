@@ -5,11 +5,10 @@
 class Megaphone
 {
 public:
-    Megaphone(std::ostream &output):output(output){}
+    Megaphone(std::ostream &output);
     void feedback_noise();
-    void increase_volume( int numInputs, char *input[]);
+    void increase_volume( int numInputs, const char *input[]);
 private:
-    bool is_lower(char c);
     std::string ltrim(const std::string &s);
     std::string rtrim(const std::string &s);
     std::string trim(const std::string &s);
