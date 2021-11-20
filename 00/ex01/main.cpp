@@ -3,9 +3,6 @@
 
 int main(void)
 {
-	Yellow_book phoneBook(std::cout, std::cin);
-	Parser parser(std::cin);
-	parser.parse(phoneBook);
 
   return 0;
 }

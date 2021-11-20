@@ -1,17 +1,15 @@
 CC=g++
-CFLAGS= -Wall -Werror -Wextra #-std=c++98
+CFLAGS= -Wall -Werror -Wextra 
 
-NAME=yellow_book
+NAME=phoneBook
 
 HEADER_FILES = 				\
-	yellow_book.hpp			\
-	contact.hpp				\
-	parser.hpp				\
+	IODevice.hpp			\
+	PhoneBook.hpp			\
 
 SRC_FILES=					\
-	yellow_book.cpp			\
-	contact.cpp				\
-	parser.cpp				\
+	IODevice.cpp			\
+	PhoneBook.cpp			\
 
 TEST_FILES = test.cpp
 
@@ -23,7 +21,7 @@ $(NAME): $(SRC_FILES) $(HEADER_FILES)
 clean:
 
 test:
-	@g++ -std=c++11 -Wall $(SRC_FILES) ../../tests/main.cpp test.cpp -o test && ./test --success
+	@$(CC) $(CFLAGS) -std=c++17 $(SRC_FILES) ../../tests/main.cpp test.cpp -o test -lCatch2Main -lCatch2 && ./test --success
 
 re: fclean all
 
