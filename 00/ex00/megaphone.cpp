@@ -22,30 +22,30 @@ void Megaphone::increase_volume( int numInputs, const char *input[])
     output << to_upper(input[i]) << std::endl;
 }
 
-std::string Megaphone::ltrim(const std::string &s)
+std::string Megaphone::ltrim(const std::string &str)
 {
     const std::string whitespace = " \n\r\t\f\v";
-    size_t start = s.find_first_not_of(whitespace);
-    return (start == std::string::npos) ? "" : s.substr(start);
+    const size_t start = str.find_first_not_of(whitespace);
+    return (start == std::string::npos) ? "" : str.substr(start);
 }   
 
-std::string Megaphone::rtrim(const std::string &s)
+std::string Megaphone::rtrim(const std::string &str)
 {
     const std::string whitespace = " \n\r\t\f\v";
-    size_t end = s.find_last_not_of(whitespace);
-    return (end == std::string::npos) ? "" : s.substr(0, end + 1);
+    const size_t end = str.find_last_not_of(whitespace);
+    return (end == std::string::npos) ? "" : str.substr(0, end + 1);
 }
 
-std::string Megaphone::trim(const std::string &s) {
-    return rtrim(ltrim(s));
+std::string Megaphone::trim(const std::string &str) {
+    return rtrim(ltrim(str));
 }
 
 std::string Megaphone::to_upper(std::string str)
 {
-    str = trim(str);
-    std::string uppercase_str = str;
     const int offset = 32;
-    for (int i = 0;uppercase_str[i] != '\0'; ++i)
+    std::string uppercase_str = trim(str);
+    
+    for (int i = 0; uppercase_str[i] != '\0'; ++i)
     {
         if (islower(uppercase_str[i]))
         {

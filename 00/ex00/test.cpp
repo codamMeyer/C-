@@ -1,45 +1,47 @@
-#include <catch2/catch_test_macros.hpp>
 #include "megaphone.hpp"
+#include <catch2/catch_test_macros.hpp>
 #include <iostream>
 #include <sstream>
 
 class MegaphoneTest
 {
-	public:
-	MegaphoneTest()
-	 : megaphone(os)
-	{}
-	
+public:
+  MegaphoneTest()
+	: megaphone(os)
+  {}
 
-	std::ostringstream os;
-    Megaphone megaphone;
+  std::ostringstream os;
+  Megaphone megaphone;
 };
 
-TEST_CASE_METHOD(MegaphoneTest, "Feedback Noise" )
+TEST_CASE_METHOD(MegaphoneTest, "Feedback Noise")
 {
-	const std::string expected = "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
+  const std::string expected = "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
 
-	megaphone.feedback_noise();
+  megaphone.feedback_noise();
 
-	CHECK(expected == os.str());
+  CHECK(expected == os.str());
 }
 
-TEST_CASE_METHOD(MegaphoneTest, "one input" )
+TEST_CASE_METHOD(MegaphoneTest, "one input")
 {
-	const std::string expected = "HELLO HELLO HELLO\n";
-	const char * input[] = {" ", "           hello HELLO HeLlO         "};
+  const std::string expected = "HELLO HELLO HELLO\n";
+  const char* input[] = { "executable ",
+						  "           hello HELLO HeLlO         " };
 
-	megaphone.increase_volume(1, input);
+  megaphone.increase_volume(2, input);
 
-	CHECK(expected == os.str());
+  CHECK(expected == os.str());
 }
 
-TEST_CASE_METHOD(MegaphoneTest, "two inputs" )
+TEST_CASE_METHOD(MegaphoneTest, "two inputs")
 {
-	const std::string expected = "HELLO HELLO HELLO BLA\n";
-	const char * input[] = {" ", "           hello HELLO HeLlO         ", "bla"};
+  const std::string expected = "HELLO HELLO HELLO BLA\n";
+  const char* input[] = { "executable ",
+						  "           hello HELLO HeLlO         ",
+						  "bla" };
 
-	megaphone.increase_volume(3, input);
+  megaphone.increase_volume(3, input);
 
-	CHECK(expected == os.str());
+  CHECK(expected == os.str());
 }
