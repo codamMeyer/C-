@@ -6,19 +6,19 @@ NAME=phoneBook
 HEADER_FILES = 				\
 	IODevice.hpp			\
 	PhoneBook.hpp			\
-	IOHandler.hpp				\
+	IOHandler.hpp			\
 
 SRC_FILES=					\
 	IODevice.cpp			\
 	PhoneBook.cpp			\
-	IOHandler.cpp				\
+	IOHandler.cpp			\
 
 TEST_FILES = test.cpp
 
 all: $(NAME)
 
 $(NAME): $(SRC_FILES) $(HEADER_FILES)
-	$(CC) $(CFLAGS) main.cpp $(SRC_FILES) -o $(NAME)
+	$(CC) $(CFLAGS) -std=c++98 main.cpp $(SRC_FILES) -o $(NAME)
 
 clean:
 
