@@ -2,6 +2,7 @@
 #define PHONEBOOK_H
 
 #include "IODevice.hpp"
+#include <cstddef>
 #include <ostream>
 
 class Contact
@@ -39,8 +40,8 @@ public:
   void exit();
   void add();
   void search();
-  const Contact& getContact(int index);
-  void displayContactInfo(int index);
+  const Contact& getContact(size_t index);
+  void displayContactInfo(size_t index);
   int getNumInitializedContacts() const;
 
 private:

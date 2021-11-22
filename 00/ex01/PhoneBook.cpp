@@ -1,6 +1,7 @@
 #include "PhoneBook.hpp"
 #include "IODevice.hpp"
 #include <cctype>
+#include <cstddef>
 #include <cstdlib>
 #include <iomanip>
 #include <iostream>
@@ -131,24 +132,29 @@ PhoneBook::search()
     return;
   }
   displayAvailableContacts();
-
-  const int indexSelected = std::atoi(ioDevice.readInputLine().data());
-  if (initializedContacts >= 0 && indexSelected >= 0 &&
-      indexSelected <= initializedContacts) {
-    displayContactInfo(indexSelected);
-  } else {
+  std::string input = ioDevice.readInputLine();
+  size_t digitIndex = input.find_first_of("01234567");
+  if (digitIndex == std::string::npos) {
     ioDevice.writeOutputLine("Invalid Option");
+    return;
   }
+  const int indexSelected = std::atoi(&input[digitIndex]);
+  if (initializedContacts < 0 || indexSelected < 0 ||
+      indexSelected >= initializedContacts) {
+    ioDevice.writeOutputLine("Invalid Option");
+    return;
+  }
+  displayContactInfo(indexSelected);
 }
 
 const Contact&
-PhoneBook::getContact(int index)
+PhoneBook::getContact(size_t index)
 {
   return contacts[index];
 }
 
 void
-PhoneBook::displayContactInfo(int index)
+PhoneBook::displayContactInfo(size_t index)
 {
   std::stringstream contactData;
   contactData << contacts[index];
