@@ -22,17 +22,16 @@ TEST_CASE_METHOD(PhoneBookTest, "Exit")
 
 TEST_CASE_METHOD(PhoneBookTest, "Add new contact")
 {
+  const Contact expectedContact =
+    Contact("Maria", "Santos", "mari", "12345678", "I love tests");
+
   ioDevice.setNextInput("Maria", 0);
   ioDevice.setNextInput("Santos", 1);
   ioDevice.setNextInput("mari", 2);
   ioDevice.setNextInput("12345678", 3);
-  ioDevice.setNextInput("I love Vini, but he is annoying", 4);
-
+  ioDevice.setNextInput("I love tests", 4);
   phoneBook.add();
-  Contact contact = phoneBook.getContact(0);
-  CHECK(contact.getFirstName() == "Maria");
-  CHECK(contact.getLastName() == "Santos");
-  CHECK(contact.getNickame() == "mari");
-  CHECK(contact.getPhoneNumber() == "12345678");
-  CHECK(contact.getSecret() == "I love Vini, but he is annoying");
+
+  const Contact &actualContact = phoneBook.getContact(0);
+  CHECK(expectedContact == actualContact);
 }
