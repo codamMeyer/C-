@@ -6,10 +6,12 @@ NAME=phoneBook
 HEADER_FILES = 				\
 	IODevice.hpp			\
 	PhoneBook.hpp			\
+	IOHandler.hpp				\
 
 SRC_FILES=					\
 	IODevice.cpp			\
 	PhoneBook.cpp			\
+	IOHandler.cpp				\
 
 TEST_FILES = test.cpp
 
@@ -21,7 +23,7 @@ $(NAME): $(SRC_FILES) $(HEADER_FILES)
 clean:
 
 test:
-	@$(CC) $(CFLAGS) -std=c++17 $(SRC_FILES) ../../tests/main.cpp test.cpp -o test -lCatch2Main -lCatch2 && ./test --success
+	@$(CC) $(CFLAGS) -std=c++17 $(SRC_FILES) ../../tests/main.cpp test.cpp -o test -lCatch2Main -lCatch2 && ./test
 
 re: fclean all
 
