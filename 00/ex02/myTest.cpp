@@ -79,8 +79,7 @@ public:
   MultipleAccountTest()
     : amounts{ 100, 200, 300 }
     , accounts(std::begin(amounts), std::end(amounts))
-  {
-  }
+  {}
   int const amounts[3];
   std::vector<Account> accounts;
 };
@@ -89,4 +88,54 @@ TEST_CASE_METHOD(MultipleAccountTest, "Check Number of Accounts")
 {
   REQUIRE(Account::getNbAccounts() == 4);
   CHECK(Account::getTotalAmount() == 700);
+}
+
+// ************************************************************************** //
+//                                                                            //
+//                tests.cpp for GlobalBanksters United                        //
+//                Created on  : Thu Nov 20 23:45:02 1989                      //
+//                Last update : Wed Jan 04 09:23:52 1992                      //
+//                Made by : Brad "Buddy" McLane <bm@gbu.com>                  //
+//                                                                            //
+// ************************************************************************** //
+
+class GlobalBankstersUnitedTest
+{
+public:
+  GlobalBankstersUnitedTest()
+    : amounts{ 42, 54, 957, 432, 1234, 0, 754, 16576 }
+    , deposits{ 5, 765, 564, 2, 87, 23, 9, 20 }
+    , withdrawals{ 321, 34, 657, 4, 76, 275, 657, 7654 }
+    , accounts(std::begin(amounts), std::end(amounts))
+  {
+    std::cout << "\n\n";
+    Account::displayAccountsInfos();
+    for (int i = 0; i < Account::getNbAccounts(); ++i)
+      accounts[i].displayStatus();
+  }
+  ~GlobalBankstersUnitedTest() { std::cout << "\n\n"; }
+  int const amounts[8];
+  int const deposits[8];
+  int const withdrawals[8];
+  std::vector<Account> accounts;
+};
+
+TEST_CASE_METHOD(GlobalBankstersUnitedTest, "Deposits")
+{
+  for (int i = 0; i < Account::getNbAccounts(); ++i) {
+    int prev_amount = accounts[i].checkAmount();
+    accounts[i].makeDeposit(deposits[i]);
+    CHECK(accounts[i].checkAmount() == (prev_amount + deposits[i]));
+  }
+}
+
+TEST_CASE_METHOD(GlobalBankstersUnitedTest, "Withdrawal")
+{
+  for (int i = 0; i < Account::getNbAccounts(); ++i) {
+    int prev_amount = accounts[i].checkAmount();
+    if (accounts[i].makeWithdrawal(withdrawals[i]))
+      CHECK(accounts[i].checkAmount() == (prev_amount - withdrawals[i]));
+    else
+      CHECK(accounts[i].checkAmount() == prev_amount);
+  }
 }
