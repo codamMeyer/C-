@@ -2,15 +2,20 @@
 #include <ostream>
 #include <sstream>
 
-Zombie*
-zombieHorde(int N, std::string name)
+void setZombieNames(Zombie *zombieHorde, int n, std::string name)
 {
-  Zombie* zombies = new Zombie[N];
-  for (int i = 0; i < N; ++i)
+  for (int i = 0; i < n; ++i)
   {
     std::stringstream zombieName;
     zombieName << name << i;
-    zombies[i].setName(zombieName.str());
+    zombieHorde[i].setName(zombieName.str());
   }
-  return zombies;
+}
+
+Zombie*
+zombieHorde(int N, std::string name)
+{
+  Zombie* zombieHorde = new Zombie[N];
+  setZombieNames(zombieHorde, N, name);
+  return zombieHorde;
 }
