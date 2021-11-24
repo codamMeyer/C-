@@ -13,5 +13,4 @@ int main()
 
     std::cout << "This is the string using stringPTR: " << *stringPTR << std::endl;
     std::cout << "This is the string using stringREF: " << stringREF << std::endl;
-
 }
