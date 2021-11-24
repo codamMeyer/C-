@@ -3,8 +3,10 @@
 int
 main()
 {
-  Zombie* zombies = zombieHorde(5, "LittleZombie");
-  for (int i = 0; i < 5; ++i)
+  int numZombies = 10;
+
+  Zombie* zombies = zombieHorde(numZombies, "LittleZombie");
+  for (int i = 0; i < numZombies; ++i)
     zombies[i].announce();
   delete [] zombies;
 }
