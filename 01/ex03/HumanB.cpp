@@ -8,9 +8,9 @@ HumanB::HumanB(std::string name)
 {}
 
 void
-HumanB::setWeapon(Weapon* newWeapon)
+HumanB::setWeapon(Weapon& newWeapon)
 {
-  weapon = newWeapon;
+  weapon = &newWeapon;
 }
 
 void

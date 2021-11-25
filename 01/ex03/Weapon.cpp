@@ -4,10 +4,6 @@ Weapon::Weapon(std::string weaponType)
   : type(weaponType)
 {}
 
-Weapon::Weapon()
-  : type("hands")
-{}
-
 const std::string&
 Weapon::getType() const
 {

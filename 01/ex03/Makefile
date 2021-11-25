@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS= -Wall -Werror -Wextra -std=c++98
 
-NAME=zombie
+NAME=unnecessaryViolence
 
 HEADER_FILES = 		\
 	HumanA.hpp		\
@@ -27,5 +27,6 @@ re: fclean all
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f test
 
 .PHONY: all clean fclean re

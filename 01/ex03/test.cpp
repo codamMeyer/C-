@@ -1,5 +1,6 @@
 #include "HumanA.hpp"
 #include "HumanB.hpp"
+#include "Weapon.hpp"
 #include <catch2/catch_test_macros.hpp>
 #include <iostream>
 #include <sstream>
@@ -9,14 +10,13 @@ class WeaponTest
 {
 public:
   WeaponTest()
-    : weaponA()
+    : weaponA("Bazuca")
   {}
   Weapon weaponA;
 };
 
 TEST_CASE_METHOD(WeaponTest, "Basic weapon")
 {
-  weaponA.setType("Bazuca");
   CHECK(weaponA.getType() == "Bazuca");
 }
 
@@ -32,20 +32,18 @@ class HumansTest : public WeaponTest
 {
 public:
   HumansTest()
-  {
-    weaponA.setType("Knife");
-    weaponB.setType("Bazuca");
-  }
+    : weaponB("knife")
+  {}
   Weapon weaponB;
 };
 
 TEST_CASE_METHOD(HumansTest, "HumanA")
 {
   HumanA A = HumanA("Bob", weaponA);
-  CHECK(A.getWaponType() == "Knife");
+  CHECK(A.getWaponType() == "Bazuca");
   A.attack();
-  weaponA.setType("Bottle");
-  CHECK(A.getWaponType() == "Bottle");
+  weaponA.setType("knife");
+  CHECK(A.getWaponType() == "knife");
   A.attack();
 }
 
@@ -53,11 +51,12 @@ TEST_CASE_METHOD(HumansTest, "HumanB")
 {
   HumanB B = HumanB("Jim");
   CHECK(B.getWeapon() == NULL);
-
-  B.setWeapon(&weaponA);
-  CHECK(B.getWeapon()->getType() == "Knife");
   B.attack();
-  weaponA.setType("Bottle");
+
+  B.setWeapon(weaponB);
+  CHECK(B.getWeapon()->getType() == "knife");
+  B.attack();
+  weaponB.setType("Bottle");
   CHECK(B.getWeapon()->getType() == "Bottle");
   B.attack();
 }
