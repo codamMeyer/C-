@@ -6,24 +6,31 @@
 #include <ostream>
 #include <string.h>
 
-std::string
-SedString::run(const std::string& stringToSed,
-	       const std::string& toReplace,
-	       const std::string& replacement)
+SedString::SedString(const std::string& stringToSed,
+		     const std::string& toReplace,
+		     const std::string& replacement)
+  : stringToSed(stringToSed)
+  , toReplace(toReplace)
+  , replacement(replacement)
+{}
+
+void
+SedString::replaceOccurence(std::string& newString, size_t& occurence)
 {
-  const size_t toReplaceLen = toReplace.length();
-  const size_t toSedLen = stringToSed.length();
+  const size_t index = occurence + toReplace.length();
+  newString += replacement;
+  occurence = stringToSed.find(toReplace, index);
+  newString += stringToSed.substr(index, occurence - index);
+}
+
+std::string
+SedString::run()
+{
   size_t occurence = stringToSed.find(toReplace);
-  size_t index = 0;
 
-  std::string newString;
-
-  newString += stringToSed.substr(index, occurence);
-  while (occurence < toSedLen) {
-    newString += replacement;
-    index = occurence + toReplaceLen;
-    occurence = stringToSed.find(toReplace, index);
-    newString += stringToSed.substr(index, occurence - index);
+  std::string newString = stringToSed.substr(0, occurence);
+  while (occurence < stringToSed.npos) {
+    replaceOccurence(newString, occurence);
   }
   return newString;
 }
@@ -45,24 +52,30 @@ FileHandle::get()
   return file;
 }
 
-SedFile::SedFile() {}
+SedFile::SedFile(const std::string& inputFilename)
+  : infile(inputFilename.data(), std::fstream::in)
+  , inputFilename(inputFilename)
+{}
 
 void
-SedFile::run(const std::string& filename,
-	     const std::string& toReplace,
-	     const std::string& replacement)
+SedFile::run(const std::string& toReplace, const std::string& replacement)
 {
-  FileHandle infile(filename.data(), std::fstream::in);
-
   if (!infile.get()) {
-    std::cout << filename << " doesn't exist\n";
+    std::cout << inputFilename << " doesn't exist\n";
     return;
   }
-  const std::string outFilename = filename + ".replace";
-  FileHandle outfile(outFilename.data(), std::fstream::out | std::fstream::app);
+  readAndReplace(toReplace, replacement);
+}
 
+void
+SedFile::readAndReplace(const std::string& toReplace,
+			const std::string& replacement)
+{
+  const std::string outFilename = inputFilename + ".replace";
+  FileHandle outfile(outFilename.data(), std::fstream::out | std::fstream::app);
   std::string line;
+
   while (getline(infile.get(), line)) {
-    outfile.get() << SedString::run(line, toReplace, replacement) << std::endl;
+    outfile.get() << SedString(line, toReplace, replacement).run() << std::endl;
   }
 }

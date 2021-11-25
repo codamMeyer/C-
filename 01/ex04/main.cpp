@@ -9,6 +9,6 @@ main(int argc, const char* argv[])
       << "usage: ./sedIsForLosers <filename> <stringToReplace> <replacement>\n";
     return 1;
   }
-  SedFile::run(argv[1], argv[2], argv[3]);
+  SedFile(argv[1]).run(argv[2], argv[3]);
   return 0;
 }

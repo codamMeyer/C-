@@ -4,11 +4,9 @@ CFLAGS= -Wall -Werror -Wextra
 NAME=sedIsForLosers
 
 HEADER_FILES = 	\
-	IODevice.hpp	\
 	Sed.hpp	\
 
 SRC_FILES=		\
-	IODevice.cpp	\
 	Sed.cpp	\
 
 TEST_FILES = test.cpp

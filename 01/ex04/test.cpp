@@ -1,4 +1,3 @@
-#include "IODevice.hpp"
 #include "Sed.hpp"
 #include <catch2/catch_test_macros.hpp>
 #include <iostream>
@@ -14,34 +13,47 @@ public:
 	      "I like green because the sky is green",
 	      "I love cats because cats bark" }
   {
-    createInput();
   }
-  ~SedTest() { ioDevice.resetOutput(); }
-  void createInput() { ioDevice.setInputArray(inputs, 4); }
-  std::string inputs[10];
-  MockIODevice ioDevice;
+  const std::string inputs[4];
 };
 
 TEST_CASE_METHOD(SedTest, "No occurence in string")
 {
-  CHECK(SedString::run(ioDevice.readInputLine(), "banana", "apple") ==
+  CHECK(SedString(inputs[0], "banana", "apple").run() ==
 	inputs[0]);
 }
 
 TEST_CASE_METHOD(SedTest, "One occurence in string")
 {
-  CHECK(SedString::run(ioDevice.readInputLine(), "first", "second") ==
+  CHECK(SedString(inputs[0], "first", "second").run() ==
 	"This is the second line with no occurence");
+}
+
+TEST_CASE_METHOD(SedTest, "Occurence in the beginning of string")
+{
+  CHECK(SedString(inputs[0], "This", "That").run() ==
+	"That is the first line with no occurence");
+}
+
+TEST_CASE_METHOD(SedTest, "Occurence in the end of string")
+{
+  CHECK(SedString(inputs[0], "occurence", "hello").run() ==
+	"This is the first line with no hello");
+}
+
+TEST_CASE_METHOD(SedTest, "whole line")
+{
+  CHECK(SedString(inputs[0], "This is the first line with no occurence", ".").run() ==
+	".");
 }
 
 TEST_CASE_METHOD(SedTest, "More occurences in string")
 {
-  ioDevice.readInputLine();
-  CHECK(SedString::run(ioDevice.readInputLine(), "on", "ON") ==
+  CHECK(SedString(inputs[1], "on", "ON").run() ==
 	"SecONd line has ONe string to replace apples");
-  CHECK(SedString::run(ioDevice.readInputLine(), "green", "blue") ==
+  CHECK(SedString(inputs[2], "green", "blue").run() ==
 	"I like blue because the sky is blue");
-  CHECK(SedString::run(ioDevice.readInputLine(), "cats", "dogs") ==
+  CHECK(SedString(inputs[3], "cats", "dogs").run() ==
 	"I love dogs because dogs bark");
 }
 
@@ -55,5 +67,7 @@ TEST_CASE_METHOD(SedTest, "Replace in a loop")
   };
 
   for (int i = 0; i < 4; ++i)
-    CHECK(SedString::run(ioDevice.readInputLine(), "o", "OOOO") == expected[i]);
+  {
+    CHECK(SedString(inputs[i], "o", "OOOO").run() == expected[i]);
+  }
 }

@@ -6,9 +6,17 @@
 class SedString
 {
 public:
-  static std::string run(const std::string& stringToSed,
-			 const std::string& toReplace,
-			 const std::string& replacement);
+  SedString(const std::string& stringToSed,
+	    const std::string& toReplace,
+	    const std::string& replacement);
+  std::string run();
+
+private:
+  void replaceOccurence(std::string& newString, size_t& occurence);
+
+  const std::string& stringToSed;
+  const std::string& toReplace;
+  const std::string& replacement;
 };
 
 class FileHandle
@@ -25,10 +33,15 @@ private:
 class SedFile
 {
 public:
-  SedFile();
-  static void run(const std::string& filename,
-		  const std::string& toReplace,
-		  const std::string& replacement);
+  SedFile(const std::string& inputFilename);
+  void run(const std::string& toReplace, const std::string& replacement);
+
+private:
+  void readAndReplace(const std::string& toReplace,
+		      const std::string& replacement);
+
+  FileHandle infile;
+  std::string inputFilename;
 };
 
 #endif // SED_H
