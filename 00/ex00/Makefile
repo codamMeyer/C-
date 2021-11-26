@@ -1,4 +1,4 @@
-CC=g++
+CC=clang++
 CFLAGS= -ggdb -Wall -Werror -Wextra 
 
 NAME=megaphone

@@ -46,7 +46,7 @@ Karen::debug(void)
 {
   std::cout << "[" << stringLevels[DEBUG] << "]:\n"
 	    << colorLevels[DEBUG]
-	    << "I love to get extra baconfor my "
+	    << "I love to get extra bacon for my "
 	       "7XL-double-cheese-triple-pickle-special-ketchup burger. I just "
 	       "love it!\033[0m\n\n";
 }

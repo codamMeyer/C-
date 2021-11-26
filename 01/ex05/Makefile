@@ -1,4 +1,4 @@
-CC=g++
+CC=clang++
 CFLAGS= -Wall -Werror -Wextra 
 
 NAME=karen2.0

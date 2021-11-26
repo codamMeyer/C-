@@ -1,0 +1,5 @@
+﻿---
+BasedOnStyle: Mozilla
+AlwaysBreakAfterReturnType: None
+TabWidth: "8"
+UseTab: Always
