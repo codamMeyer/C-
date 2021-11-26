@@ -31,4 +31,4 @@ run:
 	$(CC) -ggdb3 $(TEST_INC_PATH) $(USER_INC_PATH) $(TEST_FILES) $(USER_LDFLAGS) -o $(TEST_NAME)
 
 
-.PHONY: all clean fclean re test libft run
+.PHONY: all clean fclean re test run
