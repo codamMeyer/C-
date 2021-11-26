@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS= 
+CFLAGS= -Wall -Wextra -Werror -Wno-implicit-fallthrough
 
 NAME=karenFilter
 
