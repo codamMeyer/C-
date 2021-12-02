@@ -1,7 +1,7 @@
 #ifndef SED_H
 #define SED_H
-#include <fstream>
 #include <iostream>
+#include "FileHandle.hpp"
 
 class SedString
 {
@@ -17,17 +17,6 @@ private:
   const std::string& stringToSed;
   const std::string& toReplace;
   const std::string& replacement;
-};
-
-class FileHandle
-{
-public:
-  FileHandle(const std::string& filename, std::ios_base::openmode mode);
-  ~FileHandle();
-  std::fstream& get();
-
-private:
-  std::fstream file;
 };
 
 class SedFile

@@ -1,13 +1,15 @@
-CC=clang++
+CC=g++
 CFLAGS= -Wall -Werror -Wextra 
 
 NAME=sedIsForLosers
 
-HEADER_FILES = 	\
-	Sed.hpp	\
+HEADER_FILES = 		\
+	FileHandle.hpp	\
+	Sed.hpp			\
 
-SRC_FILES=		\
-	Sed.cpp	\
+SRC_FILES=			\
+	FileHandle.cpp	\
+	Sed.cpp			\
 
 TEST_FILES = test.cpp
 

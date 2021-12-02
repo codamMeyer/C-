@@ -35,23 +35,6 @@ SedString::run()
   return newString;
 }
 
-FileHandle::FileHandle(const std::string& filename,
-		       std::ios_base::openmode mode)
-{
-  file.open(filename.data(), mode);
-}
-
-FileHandle::~FileHandle()
-{
-  file.close();
-}
-
-std::fstream&
-FileHandle::get()
-{
-  return file;
-}
-
 SedFile::SedFile(const std::string& inputFilename)
   : infile(inputFilename.data(), std::fstream::in)
   , inputFilename(inputFilename)
