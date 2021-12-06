@@ -1,4 +1,4 @@
-CC=clang++
+CC=g++
 CFLAGS= -Wall -Werror -Wextra 
 
 NAME=phoneBook
@@ -18,12 +18,12 @@ TEST_FILES = test.cpp
 all: $(NAME)
 
 $(NAME): $(SRC_FILES) $(HEADER_FILES)
-	$(CC) $(CFLAGS) -std=c++98 main.cpp $(SRC_FILES) -o $(NAME)
+	$(CC) $(CFLAGS) -std=c++98 main.cpp $(SRC_FILES) -o $(NAME) 
 
 clean:
 
 test:
-	@$(CC) $(CFLAGS) -std=c++17 $(SRC_FILES) ../../tests/main.cpp test.cpp -o test -lCatch2Main -lCatch2 && ./test
+	@$(CC) $(CFLAGS) -std=c++17 $(SRC_FILES) ../../tests/main.cpp test.cpp -o test -lCatch2Main -lCatch2 && ./test --success
 
 re: fclean all
 

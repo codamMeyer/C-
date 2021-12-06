@@ -1,4 +1,4 @@
-CC=clang++
+CC=g++
 CFLAGS= -Wall -Werror -Wextra 
 
 NAME=account
@@ -19,16 +19,12 @@ $(NAME): $(SRC_FILES) $(HEADER_FILES)
 clean:
 
 test:
-	@$(CC) $(CFLAGS) -std=c++17 $(SRC_FILES) ../../tests/main.cpp $(TEST_FILES) -o test -lCatch2Main -lCatch2 && ./test
+	@$(CC) $(CFLAGS) -ggdb3 -std=c++17 $(SRC_FILES) ../../tests/main.cpp $(TEST_FILES) -o test -lCatch2Main -lCatch2 && ./test
 
 re: fclean all
 
 fclean: clean
 	rm -f $(NAME)
 	rm -f test
-
-run:
-	$(CC) -ggdb3 $(TEST_INC_PATH) $(USER_INC_PATH) $(TEST_FILES) $(USER_LDFLAGS) -o $(TEST_NAME)
-
 
 .PHONY: all clean fclean re test run
