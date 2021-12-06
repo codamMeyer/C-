@@ -55,7 +55,9 @@ SedFile::readAndReplace(const std::string& toReplace,
 			const std::string& replacement)
 {
   const std::string outFilename = inputFilename + ".replace";
-  FileHandle outfile(outFilename.data(), std::fstream::out | std::fstream::app);
+  FileHandle outfile(outFilename.data(),
+		     std::fstream::out | std::fstream::trunc |
+		       std::fstream::app);
   std::string line;
 
   while (getline(infile.get(), line)) {

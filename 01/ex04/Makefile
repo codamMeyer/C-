@@ -21,7 +21,7 @@ $(NAME): $(SRC_FILES) $(HEADER_FILES)
 clean:
 
 test:
-	@$(CC) $(CFLAGS) -std=c++17 $(SRC_FILES) ../../tests/main.cpp $(TEST_FILES) -o test -lCatch2Main -lCatch2 && ./test
+	@$(CC) $(CFLAGS) -std=c++17 $(SRC_FILES) ../../tests/main.cpp $(TEST_FILES) -o test -lCatch2Main -lCatch2 && ./test --success
 
 re: fclean all
 
