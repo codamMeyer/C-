@@ -1,4 +1,4 @@
-CC=clang++
+CC=g++
 CFLAGS= -Wall -Werror -Wextra -std=c++98
 
 NAME=zombie
@@ -13,7 +13,7 @@ SRC_FILES=			\
 
 all: $(NAME)
 
-$(NAME): $(SRC_FILES) $(HEADER_FILES)
+$(NAME): $(SRC_FILES) $(HEADER_FILES) main.cpp
 	$(CC) $(CFLAGS) $(SRC_FILES) main.cpp -o $(NAME)
 
 clean:
