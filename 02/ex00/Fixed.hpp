@@ -5,7 +5,6 @@ class Fixed
 {
 public:
   Fixed();
-  Fixed(float n);
   Fixed(const Fixed& other);
   ~Fixed();
   Fixed& operator=(const Fixed& other);
