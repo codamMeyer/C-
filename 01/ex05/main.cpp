@@ -4,7 +4,6 @@
 int
 main()
 {
-  std::cout << "\nLet's make Karen complain\n\n";
   std::cout << "\n[INVALID COMPLAIN]\n";
   Karen().complain("Some invalid complain level");
   std::cout << "\n[DEBUG]\n";
