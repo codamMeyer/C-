@@ -1,5 +1,6 @@
 #include "Fixed.hpp"
 #include <iostream>
+#include <math.h>
 
 Fixed::Fixed()
   : rawNumber(0)
@@ -14,7 +15,7 @@ Fixed::Fixed(const int n)
 }
 
 Fixed::Fixed(const float n)
-  : rawNumber(n * factor)
+  : rawNumber(roundf(n * factor))
 {
   std::cout << "Float constructor called\n";
 }

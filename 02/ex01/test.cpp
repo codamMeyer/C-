@@ -47,15 +47,16 @@ TEST(FixedPointTest, FloatConstructor)
 {
   float input = 1.1;
   Fixed n(input);
+  std::cout << "----> " << n << std::endl;
 
-  EXPECT_EQ(n.getRawBits(), 281);
+  EXPECT_EQ(n.getRawBits(), 282);
 }
 
 TEST(FixedPointTest, rawToInt)
 {
-  Fixed n(123);
+  Fixed n(1);
 
-  EXPECT_EQ(n.toInt(), 123);
+  EXPECT_EQ(n.toInt(), 1);
 }
 
 TEST(FixedPointTest, rawToFloat_1)
@@ -63,16 +64,16 @@ TEST(FixedPointTest, rawToFloat_1)
   float input = 1234.432;
   Fixed n(input);
 
-  EXPECT_FLOAT_EQ(n.toFloat(), 1234.43);
+  std::cout << "----> " << n << std::endl;
+
+  EXPECT_NEAR(n.toFloat(), 1234.43, 0.01);
 }
 
 TEST(FixedPointTest, rawToFloat_2)
 {
-  GTEST_SKIP(); // TODO Check precision
   float input = 42.42;
   Fixed n(input);
 
-  std::cout << n << std::endl;
-
-  EXPECT_FLOAT_EQ(n.toFloat(), 42.4219);
+  std::cout << "----> " << n << std::endl;
+  EXPECT_NEAR(n.toFloat(), 42.4219, 0.0001);
 }
