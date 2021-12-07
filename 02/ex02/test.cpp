@@ -47,7 +47,6 @@ TEST(FixedPointTest, FloatConstructor)
 {
   float input = 1.1;
   Fixed n(input);
-  // std::cout << "----> " << n << std::endl;
 
   EXPECT_EQ(n.getRawBits(), 282);
 }
@@ -64,8 +63,6 @@ TEST(FixedPointTest, rawToFloat_1)
   float input = 1234.432;
   Fixed n(input);
 
-  // std::cout << "----> " << n << std::endl;
-
   EXPECT_NEAR(n.toFloat(), 1234.43, 0.01);
 }
 
@@ -74,7 +71,6 @@ TEST(FixedPointTest, rawToFloat_2)
   float input = 42.42;
   Fixed n(input);
 
-  // std::cout << "----> " << n << std::endl;
   EXPECT_NEAR(n.toFloat(), 42.4219, 0.0001);
 }
 
@@ -208,4 +204,19 @@ TEST(FixedPointTest, div)
   Fixed b(2);
 
   EXPECT_EQ((a / b).toInt(), 2);
+}
+
+TEST(FixedPointTest, minMax)
+{
+  Fixed a(4);
+  Fixed b(2);
+
+  EXPECT_EQ(Fixed::max(a, b), a);
+  EXPECT_EQ(Fixed::min(a, b), b);
+
+  const Fixed constA(4);
+  const Fixed constB(2);
+
+  EXPECT_EQ(Fixed::max(constA, constB), constA);
+  EXPECT_EQ(Fixed::min(constA, constB), constB);
 }

@@ -29,37 +29,37 @@ Fixed::operator=(const Fixed& other)
 }
 
 bool
-Fixed::operator<(const Fixed& other)
+Fixed::operator<(const Fixed& other) const
 {
   return (getRawBits() < other.getRawBits());
 }
 
 bool
-Fixed::operator<=(const Fixed& other)
+Fixed::operator<=(const Fixed& other) const
 {
   return (getRawBits() <= other.getRawBits());
 }
 
 bool
-Fixed::operator>(const Fixed& other)
+Fixed::operator>(const Fixed& other) const
 {
   return (getRawBits() > other.getRawBits());
 }
 
 bool
-Fixed::operator>=(const Fixed& other)
+Fixed::operator>=(const Fixed& other) const
 {
   return (getRawBits() >= other.getRawBits());
 }
 
 bool
-Fixed::operator==(const Fixed& other)
+Fixed::operator==(const Fixed& other) const
 {
   return (getRawBits() == other.getRawBits());
 }
 
 bool
-Fixed::operator!=(const Fixed& other)
+Fixed::operator!=(const Fixed& other) const
 {
   return (getRawBits() != other.getRawBits());
 }
@@ -95,7 +95,7 @@ Fixed::operator--(int)
 }
 
 Fixed
-Fixed::operator+(const Fixed& other)
+Fixed::operator+(const Fixed& other) const
 {
   Fixed sum;
   sum.setRawBits(this->rawNumber + other.rawNumber);
@@ -104,7 +104,7 @@ Fixed::operator+(const Fixed& other)
 }
 
 Fixed
-Fixed::operator-(const Fixed& other)
+Fixed::operator-(const Fixed& other) const
 {
   Fixed sub;
   sub.setRawBits(this->rawNumber - other.rawNumber);
@@ -113,21 +113,22 @@ Fixed::operator-(const Fixed& other)
 }
 
 Fixed
-Fixed::operator*(const Fixed& other)
+Fixed::operator*(const Fixed& other) const
 {
   Fixed mult;
-  int lhs = this->rawNumber >> (scale / 2);
-  int rhs = other.rawNumber >> (scale / 2);
-  mult.rawNumber = lhs * rhs;
+  const long long int lhs = this->rawNumber;
+  const long long int rhs = other.rawNumber;
+  mult.rawNumber = lhs * rhs >> scale;
+
   return mult;
 }
 
 Fixed
-Fixed::operator/(const Fixed& other)
+Fixed::operator/(const Fixed& other) const
 {
   Fixed div;
-  long long int lhs = this->rawNumber << scale;
-  long long int rhs = other.rawNumber;
+  const long long int lhs = this->rawNumber << scale;
+  const long long int rhs = other.rawNumber;
   div.rawNumber = lhs / rhs;
   return div;
 }
@@ -154,6 +155,45 @@ int
 Fixed::toInt(void) const
 {
   return (rawNumber >> scale);
+}
+
+Fixed&
+Fixed::min(Fixed& lhs, Fixed& rhs)
+{
+  if (lhs.rawNumber < rhs.rawNumber) {
+    return lhs;
+  } else {
+    return rhs;
+  }
+}
+
+Fixed&
+Fixed::max(Fixed& lhs, Fixed& rhs)
+{
+  if (lhs.rawNumber > rhs.rawNumber) {
+    return lhs;
+  } else {
+    return rhs;
+  }
+}
+const Fixed&
+Fixed::min(const Fixed& lhs, const Fixed& rhs)
+{
+  if (lhs.rawNumber < rhs.rawNumber) {
+    return lhs;
+  } else {
+    return rhs;
+  }
+}
+
+const Fixed&
+Fixed::max(const Fixed& lhs, const Fixed& rhs)
+{
+  if (lhs.rawNumber > rhs.rawNumber) {
+    return lhs;
+  } else {
+    return rhs;
+  }
 }
 
 std::ostream&
