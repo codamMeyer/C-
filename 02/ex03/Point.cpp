@@ -17,6 +17,12 @@ Point::Point(const float x, const float y)
 
 Point::~Point() {}
 
+bool
+Point::operator==(const Point& other) const
+{
+  return (x == other.getX()) && (y == other.getY());
+}
+
 const Fixed&
 Point::getX() const
 {

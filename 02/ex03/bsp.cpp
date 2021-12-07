@@ -20,12 +20,19 @@ getArea(Point const a, Point const b, Point const c)
   const float xC = c.getX().toFloat();
   const float yC = c.getY().toFloat();
 
-  return absValue((xA * (yB - yC) + xB * (yC - yA) + xC * (yA - yB)) / 2.0);
+  const float sideBC = yB - yC;
+  const float sideCA = yC - yA;
+  const float sideAB = yA - yB;
+
+  return absValue((xA * sideBC + xB * sideCA + xC * sideAB) / 2.0);
 }
 
 bool
 bsp(Point const a, Point const b, Point const c, Point const point)
 {
+  if (a == point || b == point || c == point)
+    return false;
+
   const float abcArea = getArea(a, b, c);
   const float pbcArea = getArea(point, b, c);
   const float pacArea = getArea(point, a, c);

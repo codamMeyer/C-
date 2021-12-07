@@ -10,6 +10,8 @@ public:
   Point(const float x, const float y);
   ~Point();
 
+  bool operator==(const Point& other) const;
+
   const Fixed& getX() const;
   const Fixed& getY() const;
 
