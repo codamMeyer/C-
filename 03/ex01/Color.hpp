@@ -8,6 +8,7 @@ public:
   const static std::string& demage;
   const static std::string& attack;
   const static std::string& repair;
+  const static std::string& gateKeeper;
   const static std::string& neutral;
 };
 

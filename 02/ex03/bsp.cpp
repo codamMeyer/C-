@@ -1,6 +1,6 @@
 #include "bsp.hpp"
 
-float
+static float
 absValue(float n)
 {
   if (n < 0) {
@@ -10,7 +10,7 @@ absValue(float n)
   }
 }
 
-float
+static float
 getArea(Point const a, Point const b, Point const c)
 {
   const float xA = a.getX().toFloat();
@@ -24,6 +24,8 @@ getArea(Point const a, Point const b, Point const c)
   const float difCA = yC - yA;
   const float difAB = yA - yB;
 
+  //  explanation with drawing
+  //  https://www.cuemath.com/geometry/area-of-triangle-in-coordinate-geometry/
   return absValue((xA * difBC + xB * difCA + xC * difAB) / 2.0);
 }
 

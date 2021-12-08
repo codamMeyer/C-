@@ -23,15 +23,21 @@ public:
   int getEnergyPoints() const;
   int getAttackDemage() const;
 
-private:
-  static const int defaultHitPoints = 10;
-  static const int defaultEnergyPoints = 10;
-  static const int defaultAttackDemage = 0;
+protected:
+  ClapTrap(const std::string& name,
+	   int hitPoints,
+	   int energyPoints,
+	   int attackDemage);
 
   std::string name;
   int hitPoints;
   int energyPoints;
   int attackDemage;
+
+private:
+  static const int defaultHitPoints = 10;
+  static const int defaultEnergyPoints = 10;
+  static const int defaultAttackDemage = 0;
 };
 
 std::ostream& operator<<(std::ostream& os, const ClapTrap& clapTrap);

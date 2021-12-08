@@ -101,6 +101,16 @@ ClapTrap::getAttackDemage() const
   return attackDemage;
 }
 
+ClapTrap::ClapTrap(const std::string& name,
+		   int hitPoints,
+		   int energyPoints,
+		   int attackDemage)
+  : name(name)
+  , hitPoints(hitPoints)
+  , energyPoints(energyPoints)
+  , attackDemage(attackDemage)
+{}
+
 std::ostream&
 operator<<(std::ostream& os, const ClapTrap& clapTrap)
 {
