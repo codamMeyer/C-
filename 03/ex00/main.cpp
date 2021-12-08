@@ -11,18 +11,24 @@ main()
 
   C = B;
   std::cout << std::endl;
+  std::cout << A;
   A.attack("Monster");
   A.takeDamage(amout);
+  std::cout << A;
   A.beRepaired(amout);
 
   std::cout << std::endl;
-  B.attack("Monster");
+  std::cout << B;
+  B.attack("T-REX");
   B.takeDamage(amout);
+  std::cout << B;
   B.beRepaired(amout);
 
   std::cout << std::endl;
-  C.attack("Monster");
+  std::cout << C;
+  C.attack("Alien");
   C.takeDamage(amout);
+  std::cout << C;
   C.beRepaired(amout);
 
   std::cout << std::endl;

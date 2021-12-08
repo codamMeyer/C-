@@ -112,3 +112,13 @@ ClapTrap::getAttackDemage() const
 {
   return attackDemage;
 }
+
+std::ostream&
+operator<<(std::ostream& os, const ClapTrap& clapTrap)
+{
+  os << "\nName: " << clapTrap.getName() << std::endl;
+  os << "Attack Demage: " << clapTrap.getAttackDemage() << std::endl;
+  os << "Energy Points: " << clapTrap.getEnergyPoints() << std::endl;
+  os << "Hit Points: " << clapTrap.getHitPoints() << std::endl << std::endl;
+  return os;
+}

@@ -35,4 +35,6 @@ private:
   const std::string& neutralColor;
 };
 
+std::ostream& operator<<(std::ostream& os, const ClapTrap& clapTrap);
+
 #endif // CLAPTRAP_H
