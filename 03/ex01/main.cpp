@@ -1,35 +1,32 @@
 #include "ScavTrap.hpp"
 #include <iostream>
 
+void
+performAttack(ScavTrap& from, ScavTrap& to)
+{
+  from.attack(to.getName());
+  to.takeDamage(from.getAttackDemage());
+  std::cout << to << std::endl;
+}
+
 int
 main()
 {
-  const int amout = 2;
-  ScavTrap A;
+  const int repairAmount = 5;
+  ScavTrap A("T-REX");
   ScavTrap B("Buddy");
   ScavTrap C;
 
   C = B;
   std::cout << std::endl;
   std::cout << A;
-  A.attack("Monster");
-  A.takeDamage(amout);
-  std::cout << A;
-  A.beRepaired(amout);
-
+  performAttack(A, B);
+  B.beRepaired(repairAmount);
+  B.guardGate();
   std::cout << std::endl;
-  std::cout << B;
-  B.attack("T-REX");
-  B.takeDamage(amout);
-  std::cout << B;
-  B.beRepaired(amout);
 
-  std::cout << std::endl;
-  std::cout << C;
-  C.attack("Alien");
-  C.takeDamage(amout);
-  std::cout << C;
-  C.beRepaired(amout);
+  performAttack(A, C);
+  C.beRepaired(repairAmount);
   C.guardGate();
 
   std::cout << std::endl;

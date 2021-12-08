@@ -8,7 +8,7 @@ ClapTrap::ClapTrap()
   , energyPoints(defaultEnergyPoints)
   , attackDemage(defaultAttackDemage)
 {
-  std::cout << "New ClapTrap was created using default constructor\n";
+  std::cout << "ClapTrap was created using default constructor\n";
 }
 
 ClapTrap::ClapTrap(const std::string& name)
@@ -109,7 +109,9 @@ ClapTrap::ClapTrap(const std::string& name,
   , hitPoints(hitPoints)
   , energyPoints(energyPoints)
   , attackDemage(attackDemage)
-{}
+{
+  std::cout << "ClapTrap was created using protected non-default constructor\n";
+}
 
 std::ostream&
 operator<<(std::ostream& os, const ClapTrap& clapTrap)

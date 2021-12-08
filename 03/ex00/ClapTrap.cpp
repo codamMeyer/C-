@@ -8,7 +8,7 @@ ClapTrap::ClapTrap()
   , energyPoints(defaultEnergyPoints)
   , attackDemage(defaultAttackDemage)
 {
-  std::cout << "New ClapTrap was created using default constructor\n";
+  std::cout << "ClapTrap was created using default constructor\n";
 }
 
 ClapTrap::ClapTrap(const std::string& name)

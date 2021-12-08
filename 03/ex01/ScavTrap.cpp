@@ -8,14 +8,11 @@ ScavTrap::ScavTrap()
 	     defaultEnergyPoints,
 	     defaultAttackDemage)
 {
-  std::cout << "New ScavTrap was created using default constructor\n";
+  std::cout << "ScavTrap was created using default constructor\n";
 }
 
 ScavTrap::ScavTrap(const std::string& name)
-  : ClapTrap("Anonymous",
-	     defaultHitPoints,
-	     defaultEnergyPoints,
-	     defaultAttackDemage)
+  : ClapTrap(name, defaultHitPoints, defaultEnergyPoints, defaultAttackDemage)
 {
   std::cout << "ScavTrap " << name << " was created\n";
 }
