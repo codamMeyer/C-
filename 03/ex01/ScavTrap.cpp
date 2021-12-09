@@ -2,17 +2,8 @@
 #include "Color.hpp"
 #include <iostream>
 
-ScavTrap::ScavTrap()
-  : ClapTrap("Anonymous",
-	     defaultHitPoints,
-	     defaultEnergyPoints,
-	     defaultAttackDemage)
-{
-  std::cout << "ScavTrap was created using default constructor\n";
-}
-
 ScavTrap::ScavTrap(const std::string& name)
-  : ClapTrap(name, defaultHitPoints, defaultEnergyPoints, defaultAttackDemage)
+  : ClapTrap(name, defaultHitPoints, defaultEnergyPoints, defaultAttackDamage)
 {
   std::cout << "ScavTrap " << name << " was created\n";
 }
@@ -32,7 +23,7 @@ void
 ScavTrap::attack(std::string const& target)
 {
   std::cout << Color::attack << "🧨 " << name << " attack " << target
-	    << ", causing " << attackDemage << " points of damage!\n"
+	    << ", causing " << attackDamage << " points of damage!\n"
 	    << Color::neutral;
 }
 

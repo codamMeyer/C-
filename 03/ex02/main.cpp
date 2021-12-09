@@ -7,7 +7,7 @@ void
 performAttack(ClapTrap& from, ClapTrap& to)
 {
   from.attack(to.getName());
-  to.takeDamage(from.getAttackDemage());
+  to.takeDamage(from.getAttackDamage());
   std::cout << to << std::endl;
 }
 

@@ -6,13 +6,13 @@
 
 TEST(ScavTrap, Costructors)
 {
-  ScavTrap A;
+  ScavTrap A("Mike");
   ScavTrap B("Buddy");
-  ScavTrap C;
+  ScavTrap C("Jake");
 
   C = B;
-  EXPECT_TRUE(A.getAttackDemage() == B.getAttackDemage());
-  EXPECT_TRUE(A.getAttackDemage() == C.getAttackDemage());
+  EXPECT_TRUE(A.getAttackDamage() == B.getAttackDamage());
+  EXPECT_TRUE(A.getAttackDamage() == C.getAttackDamage());
   EXPECT_TRUE(A.getEnergyPoints() == B.getEnergyPoints());
   EXPECT_TRUE(A.getEnergyPoints() == C.getEnergyPoints());
   EXPECT_TRUE(A.getHitPoints() == B.getHitPoints());
@@ -26,7 +26,7 @@ TEST(ScavTrap, attack)
   B.attack("Monster");
 }
 
-TEST(ScavTrap, takeDemageAndRepair)
+TEST(ScavTrap, takeDamageAndRepair)
 {
   ScavTrap B("Buddy");
   const int amout = 2;

@@ -6,13 +6,13 @@
 
 TEST(FragTrap, Costructors)
 {
-  FragTrap A;
+  FragTrap A("Mike");
   FragTrap B("Buddy");
-  FragTrap C;
+  FragTrap C("Jake");
 
   C = B;
-  EXPECT_TRUE(A.getAttackDemage() == B.getAttackDemage());
-  EXPECT_TRUE(A.getAttackDemage() == C.getAttackDemage());
+  EXPECT_TRUE(A.getAttackDamage() == B.getAttackDamage());
+  EXPECT_TRUE(A.getAttackDamage() == C.getAttackDamage());
   EXPECT_TRUE(A.getEnergyPoints() == B.getEnergyPoints());
   EXPECT_TRUE(A.getEnergyPoints() == C.getEnergyPoints());
   EXPECT_TRUE(A.getHitPoints() == B.getHitPoints());
@@ -26,7 +26,7 @@ TEST(FragTrap, attack)
   B.attack("Monster");
 }
 
-TEST(FragTrap, takeDemageAndRepair)
+TEST(FragTrap, takeDamageAndRepair)
 {
   FragTrap B("Buddy");
   const int amout = 2;

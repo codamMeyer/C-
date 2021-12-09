@@ -5,7 +5,6 @@
 class FragTrap : public ClapTrap
 {
 public:
-  FragTrap();
   FragTrap(const std::string& name);
   FragTrap(const FragTrap& other);
   ~FragTrap();
@@ -16,7 +15,7 @@ public:
 private:
   static const int defaultHitPoints = 100;
   static const int defaultEnergyPoints = 100;
-  static const int defaultAttackDemage = 30;
+  static const int defaultAttackDamage = 30;
 };
 
 #endif // FRAGTRAP_H

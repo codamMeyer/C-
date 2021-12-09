@@ -5,7 +5,6 @@
 class ScavTrap : public ClapTrap
 {
 public:
-  ScavTrap();
   ScavTrap(const std::string& name);
   ScavTrap(const ScavTrap& other);
   ~ScavTrap();
@@ -16,7 +15,7 @@ public:
 private:
   static const int defaultHitPoints = 100;
   static const int defaultEnergyPoints = 50;
-  static const int defaultAttackDemage = 20;
+  static const int defaultAttackDamage = 20;
 };
 
 #endif // SCAVTRAP_H

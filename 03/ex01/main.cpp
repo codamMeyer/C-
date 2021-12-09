@@ -5,7 +5,7 @@ void
 performAttack(ScavTrap& from, ScavTrap& to)
 {
   from.attack(to.getName());
-  to.takeDamage(from.getAttackDemage());
+  to.takeDamage(from.getAttackDamage());
   std::cout << to << std::endl;
 }
 
@@ -15,7 +15,7 @@ main()
   const int repairAmount = 5;
   ScavTrap A("T-REX");
   ScavTrap B("Buddy");
-  ScavTrap C;
+  ScavTrap C("Jake");
 
   C = B;
   std::cout << std::endl;
