@@ -6,13 +6,13 @@
 
 TEST(ClapTrap, Costructors)
 {
-  ClapTrap A;
+  ClapTrap A("Mike");
   ClapTrap B("Buddy");
-  ClapTrap C;
+  ClapTrap C("Jake");
 
   C = B;
-  EXPECT_TRUE(A.getAttackDemage() == B.getAttackDemage());
-  EXPECT_TRUE(A.getAttackDemage() == C.getAttackDemage());
+  EXPECT_TRUE(A.getAttackDamage() == B.getAttackDamage());
+  EXPECT_TRUE(A.getAttackDamage() == C.getAttackDamage());
   EXPECT_TRUE(A.getEnergyPoints() == B.getEnergyPoints());
   EXPECT_TRUE(A.getEnergyPoints() == C.getEnergyPoints());
   EXPECT_TRUE(A.getHitPoints() == B.getHitPoints());
@@ -26,7 +26,7 @@ TEST(ClapTrap, attack)
   B.attack("Monster");
 }
 
-TEST(ClapTrap, takeDemageAndRepair)
+TEST(ClapTrap, takeDamageAndRepair)
 {
   ClapTrap B("Buddy");
   const int amout = 2;

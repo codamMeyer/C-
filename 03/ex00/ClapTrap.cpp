@@ -2,20 +2,11 @@
 #include "Color.hpp"
 #include <iostream>
 
-ClapTrap::ClapTrap()
-  : name("anonymous")
-  , hitPoints(defaultHitPoints)
-  , energyPoints(defaultEnergyPoints)
-  , attackDemage(defaultAttackDemage)
-{
-  std::cout << "ClapTrap was created using default constructor\n";
-}
-
 ClapTrap::ClapTrap(const std::string& name)
   : name(name)
   , hitPoints(defaultHitPoints)
   , energyPoints(defaultEnergyPoints)
-  , attackDemage(defaultAttackDemage)
+  , attackDamage(defaultAttackDamage)
 {
   std::cout << "ClapTrap " << name << " was created\n";
 }
@@ -24,7 +15,7 @@ ClapTrap::ClapTrap(const ClapTrap& other)
   : name(other.name)
   , hitPoints(other.hitPoints)
   , energyPoints(other.energyPoints)
-  , attackDemage(other.attackDemage)
+  , attackDamage(other.attackDamage)
 {
   std::cout << "ClapTrap " << name << " was created using copy constructor\n";
 }
@@ -40,7 +31,7 @@ ClapTrap::operator=(const ClapTrap& other)
   name = other.name;
   hitPoints = other.hitPoints;
   energyPoints = other.energyPoints;
-  attackDemage = other.attackDemage;
+  attackDamage = other.attackDamage;
   return *this;
 }
 
@@ -48,14 +39,14 @@ void
 ClapTrap::attack(std::string const& target)
 {
   std::cout << Color::attack << "🔫 " << name << " attack " << target
-	    << ", causing " << attackDemage << " points of damage!\n"
+	    << ", causing " << attackDamage << " points of damage!\n"
 	    << Color::neutral;
 }
 
 void
 ClapTrap::takeDamage(unsigned int amount)
 {
-  std::cout << Color::demage << name << ": Ouch! That hurts!\n";
+  std::cout << Color::damage << name << ": Ouch! That hurts!\n";
   std::cout << "💔 " << name << " was attacked and received " << amount
 	    << " points of damage!\n"
 	    << Color::neutral;
@@ -96,16 +87,16 @@ ClapTrap::getEnergyPoints() const
 }
 
 int
-ClapTrap::getAttackDemage() const
+ClapTrap::getAttackDamage() const
 {
-  return attackDemage;
+  return attackDamage;
 }
 
 std::ostream&
 operator<<(std::ostream& os, const ClapTrap& clapTrap)
 {
   os << "\nName: " << clapTrap.getName() << std::endl;
-  os << "Attack Demage: " << clapTrap.getAttackDemage() << std::endl;
+  os << "Attack Damage: " << clapTrap.getAttackDamage() << std::endl;
   os << "Energy Points: " << clapTrap.getEnergyPoints() << std::endl;
   os << "Hit Points: " << clapTrap.getHitPoints() << std::endl << std::endl;
   return os;

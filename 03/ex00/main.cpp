@@ -5,9 +5,9 @@ int
 main()
 {
   const int amout = 2;
-  ClapTrap A;
+  ClapTrap A("Mike");
   ClapTrap B("Buddy");
-  ClapTrap C;
+  ClapTrap C("Jake");
 
   C = B;
   std::cout << std::endl;
