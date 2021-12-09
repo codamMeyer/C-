@@ -5,7 +5,6 @@
 class FragTrap : virtual public ClapTrap
 {
 public:
-  FragTrap();
   FragTrap(const std::string& name);
   FragTrap(const FragTrap& other);
   ~FragTrap();
@@ -13,10 +12,10 @@ public:
   void attack(std::string const& target);
   void highFivesGuys(void);
 
-private:
+protected:
   static const int defaultHitPoints = 100;
   static const int defaultEnergyPoints = 100;
-  static const int defaultAttackDemage = 30;
+  static const int defaultAttackDamage = 30;
 };
 
 #endif // FRAGTRAP_H

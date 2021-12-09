@@ -3,21 +3,9 @@
 #include "FragTrap.hpp"
 #include <iostream>
 
-ScavTrap::ScavTrap()
-  : ClapTrap("Anonymous")
-{
-  hitPoints = defaultHitPoints;
-  energyPoints = defaultEnergyPoints;
-  attackDemage = defaultAttackDemage;
-  std::cout << "ScavTrap was created using default constructor\n";
-}
-
 ScavTrap::ScavTrap(const std::string& name)
-  : ClapTrap(name)
+  : ClapTrap(name, defaultHitPoints, defaultEnergyPoints, defaultAttackDamage)
 {
-  hitPoints = defaultHitPoints;
-  energyPoints = defaultEnergyPoints;
-  attackDemage = defaultAttackDemage;
   std::cout << "ScavTrap " << name << " was created\n";
 }
 
@@ -36,7 +24,7 @@ void
 ScavTrap::attack(std::string const& target)
 {
   std::cout << Color::attack << "🧨 " << name << " attack " << target
-	    << ", causing " << attackDemage << " points of damage!\n"
+	    << ", causing " << attackDamage << " points of damage!\n"
 	    << Color::neutral;
 }
 

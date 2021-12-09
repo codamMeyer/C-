@@ -2,22 +2,9 @@
 #include "Color.hpp"
 #include <iostream>
 
-FragTrap::FragTrap()
-  : ClapTrap("Anonymous")
-{
-  hitPoints = defaultHitPoints;
-  energyPoints = defaultEnergyPoints;
-  attackDemage = defaultAttackDemage;
-  std::cout << "FragTrap was created using default constructor\n";
-}
-
 FragTrap::FragTrap(const std::string& name)
-  : ClapTrap(name)
-
+  : ClapTrap(name, defaultHitPoints, defaultEnergyPoints, defaultAttackDamage)
 {
-  hitPoints = defaultHitPoints;
-  energyPoints = defaultEnergyPoints;
-  attackDemage = defaultAttackDemage;
   std::cout << "FragTrap " << name << " was created\n";
 }
 
@@ -36,7 +23,7 @@ void
 FragTrap::attack(std::string const& target)
 {
   std::cout << Color::attack << "🧨 " << name << " attack " << target
-	    << ", causing " << attackDemage << " points of damage!\n"
+	    << ", causing " << attackDamage << " points of damage!\n"
 	    << Color::neutral;
 }
 

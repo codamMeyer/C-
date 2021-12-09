@@ -1,5 +1,5 @@
 CC=clang++
-CFLAGS= -Wall -Werror -Wextra -Wshadow -Wno-shadow -std=c++98
+CFLAGS= -Wall -Werror -Wextra -std=c++98
 
 TEST_FLAGS=-Wl,-rpath=/usr/local/lib -lgtest -lgtest_main -lpthread
 

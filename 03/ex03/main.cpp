@@ -8,7 +8,7 @@ void
 performAttack(ClapTrap& from, ClapTrap& to)
 {
   from.attack(to.getName());
-  to.takeDamage(from.getAttackDemage());
+  to.takeDamage(from.getAttackDamage());
   std::cout << to << std::endl;
 }
 
@@ -21,8 +21,10 @@ main()
   A.whoAmI();
   A.highFivesGuys();
   A.guardGate();
-  A.attack("MONSTEEER");
-  A.takeDamage(5);
+  A.attack(B.getName());
+  B.takeDamage(A.getAttackDamage());
+  B.attack(A.getName());
+  A.takeDamage(B.getAttackDamage());
   std::cout << A << std::endl;
   A.beRepaired(5);
   std::cout << A << std::endl;

@@ -20,23 +20,23 @@ public:
   const std::string& getName() const;
   int getHitPoints() const;
   int getEnergyPoints() const;
-  int getAttackDemage() const;
+  int getAttackDamage() const;
 
 protected:
   ClapTrap(const std::string& name,
 	   int hitPoints,
 	   int energyPoints,
-	   int attackDemage);
+	   int attackDamage);
 
   std::string name;
   int hitPoints;
   int energyPoints;
-  int attackDemage;
+  int attackDamage;
 
 private:
   static const int defaultHitPoints = 10;
   static const int defaultEnergyPoints = 10;
-  static const int defaultAttackDemage = 0;
+  static const int defaultAttackDamage = 0;
 };
 
 std::ostream& operator<<(std::ostream& os, const ClapTrap& clapTrap);
