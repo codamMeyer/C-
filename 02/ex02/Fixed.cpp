@@ -4,22 +4,32 @@
 
 Fixed::Fixed()
   : rawNumber(0)
-{}
+{
+  std::cout << "Default constructor called\n";
+}
 
 Fixed::Fixed(const int n)
   : rawNumber(n << scale)
-{}
+{
+  std::cout << "Int constructor called\n";
+}
 
 Fixed::Fixed(const float n)
   : rawNumber(roundf(n * factor))
-{}
+{
+  std::cout << "Float constructor called\n";
+}
 
 Fixed::Fixed(const Fixed& other)
 {
+  std::cout << "Copy constructor called\n";
   *this = other;
 }
 
-Fixed::~Fixed() {}
+Fixed::~Fixed()
+{
+  std::cout << "Destructor called\n";
+}
 
 Fixed&
 Fixed::operator=(const Fixed& other)
