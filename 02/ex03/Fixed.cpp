@@ -75,7 +75,7 @@ Fixed
 Fixed::operator++(int)
 {
   Fixed old = *this;
-  operator++();
+  ++rawNumber;
   return old;
 }
 
@@ -90,7 +90,7 @@ Fixed
 Fixed::operator--(int)
 {
   Fixed old = *this;
-  operator--();
+  --rawNumber;
   return old;
 }
 
