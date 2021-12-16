@@ -59,3 +59,20 @@ TEST_F(AnimalTest, simpleCat)
   genericAnimal.makeSound();
   EXPECT_EQ(oDevice.getOutput(), "");
 }
+
+TEST_F(AnimalTest, WrongCat)
+{
+  WrongAnimal genericAnimal(oDevice);
+  WrongCat cat(oDevice);
+
+  oDevice.resetOutput();
+  genericAnimal.makeSound();
+  EXPECT_EQ(oDevice.getOutput(), "Wrong Animal Sound\n");
+  oDevice.resetOutput();
+  cat.makeSound();
+  EXPECT_EQ(oDevice.getOutput(), "Meaw Meaw\n");
+  genericAnimal = cat;
+  oDevice.resetOutput();
+  genericAnimal.makeSound();
+  EXPECT_EQ(oDevice.getOutput(), "Wrong Animal Sound\n");
+}

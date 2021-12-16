@@ -25,3 +25,29 @@ Cat::makeSound()
 {
   oDevice.writeOutputLine("Meaw Meaw\n");
 }
+
+WrongCat::WrongCat(ODevice& os)
+  : WrongAnimal(os)
+{
+  type = "WrongCat";
+  oDevice.writeOutputLine("Default constructor of " + type + " called.\n");
+}
+
+WrongCat::WrongCat(const WrongCat& other)
+  : WrongAnimal(other)
+{
+  type = "WrongCat";
+  oDevice.writeOutputLine("Default constructor of " + type + " called.\n");
+}
+
+WrongCat::~WrongCat()
+{
+  type = "WrongCat";
+  oDevice.writeOutputLine("Default constructor of " + type + " called.\n");
+}
+
+void
+WrongCat::makeSound()
+{
+  oDevice.writeOutputLine("Meaw Meaw\n");
+}

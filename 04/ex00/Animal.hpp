@@ -19,4 +19,19 @@ protected:
   ODevice& oDevice;
 };
 
+class WrongAnimal
+{
+public:
+  WrongAnimal(ODevice& os);
+  WrongAnimal(const WrongAnimal& other);
+  ~WrongAnimal();
+
+  WrongAnimal& operator=(const WrongAnimal& other);
+  void makeSound();
+
+protected:
+  std::string type;
+  ODevice& oDevice;
+};
+
 #endif // ANIMAL_H
