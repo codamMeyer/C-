@@ -6,13 +6,11 @@ TEST_FLAGS=-Wl,-rpath=/usr/local/lib -lgtest -lgtest_main -lpthread
 NAME=Polymorphism
 
 HEADER_FILES = 		\
-	ODevice.hpp		\
 	Animal.hpp		\
 	Dog.hpp			\
 	Cat.hpp			\
 
 SRC_FILES=			\
-	ODevice.cpp		\
 	Animal.cpp		\
 	Dog.cpp			\
 	Cat.cpp			\

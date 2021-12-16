@@ -5,7 +5,8 @@
 class Dog : public Animal
 {
 public:
-  Dog(ODevice& os);
+  Dog();
+  Dog(std::ostream& os);
   Dog(const Dog& other);
   ~Dog();
 

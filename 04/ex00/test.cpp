@@ -1,7 +1,7 @@
 #include "Animal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
-#include "ODevice.hpp"
+
 #include <gtest/gtest.h>
 #include <iostream>
 #include <sstream>
@@ -10,69 +10,66 @@
 class AnimalTest : public ::testing::Test
 {
 public:
-  MockODevice oDevice;
-
-protected:
-  virtual void SetUp() {}
-  virtual void TearDown() {}
+  void resetOutput()
+  {
+    os.str("");
+    os.clear();
+  };
+  std::ostringstream os;
 };
 
 TEST_F(AnimalTest, SimpleMakeSoundForAnimal)
 {
-  Animal genericAnimal(oDevice);
+  Animal genericAnimal(os);
 
-  oDevice.resetOutput();
+  resetOutput();
   genericAnimal.makeSound();
-  EXPECT_EQ(oDevice.getOutput(), "");
+  EXPECT_EQ(os.str(), "");
 }
 
 TEST_F(AnimalTest, simpleDog)
 {
-  Animal genericAnimal(oDevice);
-  Dog dog(oDevice);
+  Dog dog(os);
 
-  oDevice.resetOutput();
-  genericAnimal.makeSound();
-  EXPECT_EQ(oDevice.getOutput(), "");
-  oDevice.resetOutput();
+  resetOutput();
   dog.makeSound();
-  EXPECT_EQ(oDevice.getOutput(), "Woof Woof\n");
-  genericAnimal = dog;
-  oDevice.resetOutput();
-  genericAnimal.makeSound();
-  EXPECT_EQ(oDevice.getOutput(), "");
+  EXPECT_EQ(os.str(), "Woof Woof\n");
 }
 
 TEST_F(AnimalTest, simpleCat)
 {
-  Animal genericAnimal(oDevice);
-  Cat cat(oDevice);
+  Cat cat(os);
 
-  oDevice.resetOutput();
-  genericAnimal.makeSound();
-  EXPECT_EQ(oDevice.getOutput(), "");
-  oDevice.resetOutput();
+  resetOutput();
   cat.makeSound();
-  EXPECT_EQ(oDevice.getOutput(), "Meaw Meaw\n");
-  genericAnimal = cat;
-  oDevice.resetOutput();
-  genericAnimal.makeSound();
-  EXPECT_EQ(oDevice.getOutput(), "");
+  EXPECT_EQ(os.str(), "Meaw Meaw\n");
 }
 
-TEST_F(AnimalTest, WrongCat)
+TEST_F(AnimalTest, animalSliced)
 {
-  WrongAnimal genericAnimal(oDevice);
-  WrongCat cat(oDevice);
+  Dog dog(os);
+  Animal animalSliced = dog;
 
-  oDevice.resetOutput();
-  genericAnimal.makeSound();
-  EXPECT_EQ(oDevice.getOutput(), "Wrong Animal Sound\n");
-  oDevice.resetOutput();
-  cat.makeSound();
-  EXPECT_EQ(oDevice.getOutput(), "Meaw Meaw\n");
-  genericAnimal = cat;
-  oDevice.resetOutput();
-  genericAnimal.makeSound();
-  EXPECT_EQ(oDevice.getOutput(), "Wrong Animal Sound\n");
+  resetOutput();
+  animalSliced.makeSound();
+
+  EXPECT_EQ(os.str(), "");
+}
+
+TEST_F(AnimalTest, animalMakeSoundCorrect)
+{
+  Animal* animalDog = new Dog(os);
+  Animal* animalCat = new Cat(os);
+
+  resetOutput();
+  animalDog->makeSound();
+
+  EXPECT_EQ(os.str(), "Woof Woof\n");
+
+  resetOutput();
+  animalCat->makeSound();
+  EXPECT_EQ(os.str(), "Meaw Meaw\n");
+
+  delete animalDog;
+  delete animalCat;
 }

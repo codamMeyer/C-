@@ -5,21 +5,22 @@
 class Cat : public Animal
 {
 public:
-  Cat(ODevice& os);
+  Cat();
+  Cat(std::ostream& os);
   Cat(const Cat& other);
   ~Cat();
 
   virtual void makeSound();
 };
 
-class WrongCat : public WrongAnimal
-{
-public:
-  WrongCat(ODevice& os);
-  WrongCat(const WrongCat& other);
-  ~WrongCat();
+// class WrongCat : public WrongAnimal
+// {
+// public:
+//   WrongCat(ODevice& os);
+//   WrongCat(const WrongCat& other);
+//   ~WrongCat();
 
-  virtual void makeSound();
-};
+//   virtual void makeSound();
+// };
 
 #endif // CAT_H
