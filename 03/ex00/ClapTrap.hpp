@@ -15,7 +15,6 @@ public:
   void takeDamage(unsigned int amount);
   void beRepaired(unsigned int amount);
 
-  void setDebugMode(bool mode);
   void setName(const std::string& name);
   const std::string& getName() const;
   int getHitPoints() const;
