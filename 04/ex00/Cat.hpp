@@ -10,17 +10,7 @@ public:
   Cat(const Cat& other);
   ~Cat();
 
-  virtual void makeSound();
+  virtual void makeSound() const;
 };
-
-// class WrongCat : public WrongAnimal
-// {
-// public:
-//   WrongCat(ODevice& os);
-//   WrongCat(const WrongCat& other);
-//   ~WrongCat();
-
-//   virtual void makeSound();
-// };
 
 #endif // CAT_H

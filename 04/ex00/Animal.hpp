@@ -13,26 +13,12 @@ public:
   virtual ~Animal();
 
   Animal& operator=(const Animal& other);
-  virtual void makeSound();
+  virtual void makeSound() const;
+  const std::string& getType() const;
 
 protected:
   std::string type;
   std::ostream& os;
 };
-
-// class WrongAnimal
-// {
-// public:
-//   WrongAnimal(ODevice& os);
-//   WrongAnimal(const WrongAnimal& other);
-//   ~WrongAnimal();
-
-//   WrongAnimal& operator=(const WrongAnimal& other);
-//   void makeSound();
-
-// protected:
-//   std::string type;
-//   ODevice& oDevice;
-// };
 
 #endif // ANIMAL_H

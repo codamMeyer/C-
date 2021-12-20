@@ -10,7 +10,7 @@ public:
   Dog(const Dog& other);
   ~Dog();
 
-  virtual void makeSound();
+  virtual void makeSound() const;
 };
 
 #endif // DOG_H

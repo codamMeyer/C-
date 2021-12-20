@@ -7,13 +7,17 @@ NAME=Polymorphism
 
 HEADER_FILES = 		\
 	Animal.hpp		\
+	WrongAnimal.hpp	\
 	Dog.hpp			\
 	Cat.hpp			\
+	WrongCat.hpp	\
 
 SRC_FILES=			\
 	Animal.cpp		\
+	WrongAnimal.cpp	\
 	Dog.cpp			\
 	Cat.cpp			\
+	WrongCat.cpp	\
 
 TEST=$(NAME)Test
 

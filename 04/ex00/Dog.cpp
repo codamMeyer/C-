@@ -28,7 +28,7 @@ Dog::~Dog()
 }
 
 void
-Dog::makeSound()
+Dog::makeSound() const
 {
   os << "Woof Woof\n";
 }

@@ -1,46 +1,47 @@
-#include "Animal.hpp"
-
+#include "WrongAnimal.hpp"
 #include <iostream>
 
-Animal::Animal()
-  : type("Generic Animal")
+WrongAnimal::WrongAnimal()
+  : type("Generic WrongAnimal")
   , os(std::cout)
 {
   os << "Default constructor of " << type << " called.\n";
 }
 
-Animal::Animal(std::ostream& os)
-  : type("Generic Animal")
+WrongAnimal::WrongAnimal(std::ostream& os)
+  : type("Generic WrongAnimal")
   , os(os)
 {
   os << "User-defined constructor of " << type << " called.\n";
 }
 
-Animal::Animal(const Animal& other)
+WrongAnimal::WrongAnimal(const WrongAnimal& other)
   : type(other.type)
   , os(other.os)
 {
   os << "Copy constructor of " << type << " called.\n";
 }
 
-Animal::~Animal()
+WrongAnimal::~WrongAnimal()
 {
   os << "Desstructor of " << type << " called.\n";
 }
 
-Animal&
-Animal::operator=(const Animal& other)
+WrongAnimal&
+WrongAnimal::operator=(const WrongAnimal& other)
 {
   this->type = other.type;
   return *this;
 }
 
 void
-Animal::makeSound() const
-{}
+WrongAnimal::makeSound() const
+{
+  os << "Wrong Animal Sound\n";
+}
 
 const std::string&
-Animal::getType() const
+WrongAnimal::getType() const
 {
   return type;
 }
