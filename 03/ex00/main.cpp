@@ -19,9 +19,9 @@ main()
   performAttack(clap1, clap2);
   clap2.beRepaired(1);
   performAttack(clap2, clap3);
-  clap2.beRepaired(1);
+  clap2.beRepaired(5);
   performAttack(clap3, clap1);
-  clap2.beRepaired(1);
+  clap2.beRepaired(10);
 
   std::cout << std::endl;
 }

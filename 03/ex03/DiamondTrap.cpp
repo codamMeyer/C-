@@ -3,6 +3,18 @@
 #include "FragTrap.hpp"
 #include <iostream>
 
+DiamondTrap::DiamondTrap()
+  : ClapTrap("default_clap_name",
+	     FragTrap::defaultHitPoints,
+	     ScavTrap::defaultEnergyPoints,
+	     FragTrap::defaultAttackDamage)
+  , FragTrap("Default")
+  , ScavTrap("Default")
+  , name("Default")
+{
+  std::cout << "Default DiamondTrap was created\n";
+}
+
 DiamondTrap::DiamondTrap(const std::string& name)
   : ClapTrap(name + "_clap_name",
 	     FragTrap::defaultHitPoints,

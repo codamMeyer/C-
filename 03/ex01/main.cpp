@@ -13,21 +13,21 @@ int
 main()
 {
   const int repairAmount = 5;
-  ScavTrap A("T-REX");
-  ScavTrap B("Buddy");
-  ScavTrap C("Jake");
+  ScavTrap scav1("ScavTrap1");
+  ScavTrap scav2("ScavTrap2");
+  ScavTrap scav3("ScavTrap3");
 
-  C = B;
+  scav3 = scav2;
   std::cout << std::endl;
-  std::cout << A;
-  performAttack(A, B);
-  B.beRepaired(repairAmount);
-  B.guardGate();
+  std::cout << scav1;
+  performAttack(scav1, scav2);
+  scav2.beRepaired(repairAmount);
+  scav2.guardGate();
   std::cout << std::endl;
 
-  performAttack(A, C);
-  C.beRepaired(repairAmount);
-  C.guardGate();
+  performAttack(scav1, scav3);
+  scav3.beRepaired(repairAmount);
+  scav3.guardGate();
 
   std::cout << std::endl;
 }

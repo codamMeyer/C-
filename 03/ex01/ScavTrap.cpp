@@ -2,6 +2,14 @@
 #include "Color.hpp"
 #include <iostream>
 
+ScavTrap::ScavTrap()
+  : ClapTrap("Default",
+	     defaultHitPoints,
+	     defaultEnergyPoints,
+	     defaultAttackDamage)
+{
+  std::cout << "Default ScavTrap was created\n";
+}
 ScavTrap::ScavTrap(const std::string& name)
   : ClapTrap(name, defaultHitPoints, defaultEnergyPoints, defaultAttackDamage)
 {

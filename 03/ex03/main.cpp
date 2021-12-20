@@ -15,20 +15,22 @@ performAttack(ClapTrap& from, ClapTrap& to)
 int
 main()
 {
-  DiamondTrap A("T-REX");
-  FragTrap B("Beast");
+  DiamondTrap diamond("DiamondTrap");
+  FragTrap frag("FragTrap");
 
-  A.whoAmI();
-  A.highFivesGuys();
-  A.guardGate();
-  A.attack(B.getName());
-  B.takeDamage(A.getAttackDamage());
-  B.attack(A.getName());
-  A.takeDamage(B.getAttackDamage());
-  std::cout << A << std::endl;
-  A.beRepaired(5);
-  std::cout << A << std::endl;
+  std::cout << "\n\n";
+  diamond.whoAmI();
+  std::cout << "\n\n";
+  diamond.highFivesGuys();
+  diamond.guardGate();
+  diamond.attack(frag.getName());
+  frag.takeDamage(diamond.getAttackDamage());
+  frag.attack(diamond.getName());
+  diamond.takeDamage(frag.getAttackDamage());
+  std::cout << diamond << std::endl;
+  diamond.beRepaired(5);
+  std::cout << diamond << std::endl;
 
-  std::cout << A << std::endl;
-  std::cout << B << std::endl;
+  std::cout << diamond << std::endl;
+  std::cout << frag << std::endl;
 }

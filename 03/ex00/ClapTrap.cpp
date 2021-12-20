@@ -2,6 +2,15 @@
 #include "Color.hpp"
 #include <iostream>
 
+ClapTrap::ClapTrap()
+  : name("ClapTrap")
+  , hitPoints(defaultHitPoints)
+  , energyPoints(defaultEnergyPoints)
+  , attackDamage(defaultAttackDamage)
+{
+  std::cout << "Default ClapTrap was created\n";
+}
+
 ClapTrap::ClapTrap(const std::string& name)
   : name(name)
   , hitPoints(defaultHitPoints)

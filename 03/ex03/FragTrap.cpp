@@ -2,6 +2,15 @@
 #include "Color.hpp"
 #include <iostream>
 
+FragTrap::FragTrap()
+  : ClapTrap("Default",
+	     defaultHitPoints,
+	     defaultEnergyPoints,
+	     defaultAttackDamage)
+{
+  std::cout << "Default FragTrap was created\n";
+}
+
 FragTrap::FragTrap(const std::string& name)
   : ClapTrap(name, defaultHitPoints, defaultEnergyPoints, defaultAttackDamage)
 {

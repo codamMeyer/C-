@@ -15,20 +15,21 @@ int
 main()
 {
   const int repairAmount = 5;
-  ClapTrap A("T-REX");
-  ScavTrap B("Bob");
-  FragTrap C("Buddy");
+  FragTrap frag1("FragTrap1");
+  ScavTrap frag2("ScavTrap2");
+  FragTrap frag3("FragTrap3");
 
+  frag3 = frag1;
   std::cout << std::endl;
-  std::cout << A;
-  performAttack(A, B);
-  B.beRepaired(repairAmount);
-  B.guardGate();
+  std::cout << frag1;
+  performAttack(frag1, frag2);
+  frag2.beRepaired(repairAmount);
+  frag2.guardGate();
   std::cout << std::endl;
 
-  performAttack(A, C);
-  C.beRepaired(repairAmount);
-  C.highFivesGuys();
+  performAttack(frag1, frag3);
+  frag3.beRepaired(repairAmount);
+  frag3.highFivesGuys();
 
   std::cout << std::endl;
 }
