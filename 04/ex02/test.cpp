@@ -18,15 +18,6 @@ public:
   std::ostringstream os;
 };
 
-TEST_F(AnimalTest, SimpleMakeSoundForAnimal)
-{
-  Animal genericAnimal(os);
-
-  resetOutput();
-  genericAnimal.makeSound();
-  EXPECT_EQ(os.str(), "");
-}
-
 TEST_F(AnimalTest, simpleDog)
 {
   Dog dog(os);
@@ -45,17 +36,6 @@ TEST_F(AnimalTest, simpleCat)
   EXPECT_EQ(os.str(), "Meaw Meaw\n");
 }
 
-TEST_F(AnimalTest, animalSliced)
-{
-  Dog dog(os);
-  Animal animalSliced = dog;
-
-  resetOutput();
-  animalSliced.makeSound();
-
-  EXPECT_EQ(os.str(), "");
-}
-
 TEST_F(AnimalTest, animalMakeSoundCorrect)
 {
   Animal* animalDog = new Dog(os);
@@ -65,11 +45,33 @@ TEST_F(AnimalTest, animalMakeSoundCorrect)
   animalDog->makeSound();
 
   EXPECT_EQ(os.str(), "Woof Woof\n");
+  resetOutput();
+  animalDog->think();
+  EXPECT_EQ(os.str(), "Stupid idea number 0");
 
   resetOutput();
   animalCat->makeSound();
   EXPECT_EQ(os.str(), "Meaw Meaw\n");
 
+  resetOutput();
+  animalCat->think();
+  EXPECT_EQ(os.str(), "Stupid idea number 0");
+  delete animalDog;
+  delete animalCat;
+}
+
+TEST_F(AnimalTest, animalThinkCorrect)
+{
+  Animal* animalDog = new Dog(os);
+  Animal* animalCat = new Cat(os);
+
+  resetOutput();
+  animalDog->think();
+  EXPECT_EQ(os.str(), "Stupid idea number 0");
+
+  resetOutput();
+  animalCat->think();
+  EXPECT_EQ(os.str(), "Stupid idea number 0");
   delete animalDog;
   delete animalCat;
 }
