@@ -18,9 +18,8 @@ AMateria::~AMateria()
 }
 
 AMateria&
-AMateria::operator=(const AMateria& other)
+AMateria::operator=(const AMateria&)
 {
-  type = other.getType();
   return *this;
 }
 

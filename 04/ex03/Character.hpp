@@ -19,9 +19,11 @@ public:
 
 private:
   std::string name;
-  const int maxItens;
+  int maxItens;
   int curIdx;
   AMateria* inventory[4];
+
+  void deleteInventory();
 };
 
 #endif // CHARACTER_H

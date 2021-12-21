@@ -21,7 +21,7 @@ Ice::~Ice()
 AMateria*
 Ice::clone() const
 {
-  AMateria* clone = new Ice();
+  AMateria* clone = new Ice(*this);
   return clone;
 }
 

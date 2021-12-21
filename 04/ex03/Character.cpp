@@ -18,10 +18,13 @@ Character::Character(const Character& other)
   : ICharacter()
   , name(other.name)
   , maxItens(other.maxItens)
-  , curIdx(0)
+  , curIdx(other.curIdx)
 {
+  std::cout << "Copy Constructor called\n";
+
+  deleteInventory();
   for (int i = 0; i < maxItens; ++i) {
-    if (other.inventory[i]) {
+    if (other.inventory[i] != NULL) {
       inventory[i] = other.inventory[i]->clone();
     }
   }
@@ -29,17 +32,19 @@ Character::Character(const Character& other)
 
 Character::~Character()
 {
-  for (int i = 0; i < maxItens; ++i) {
-    if (inventory[i]) {
-      delete inventory[i];
-    }
-  }
+  std::cout << "Destructor called\n";
+
+  deleteInventory();
 }
 
 Character&
 Character::operator=(const Character& other)
 {
+  std::cout << "Assigment operator called\n";
   name = other.name;
+  maxItens = other.maxItens;
+  curIdx = other.curIdx;
+  deleteInventory();
   for (int i = 0; i < maxItens; ++i) {
     if (other.inventory[i]) {
       inventory[i] = other.inventory[i]->clone();
@@ -47,6 +52,18 @@ Character::operator=(const Character& other)
   }
   return *this;
 }
+
+void
+Character::deleteInventory()
+{
+  for (int i = 0; i < maxItens; ++i) {
+    if (inventory[i] != NULL) {
+      delete inventory[i];
+      inventory[i] = NULL;
+    }
+  }
+}
+
 std::string const&
 Character::getName() const
 {
