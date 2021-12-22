@@ -1,4 +1,5 @@
 #include "Cure.hpp"
+#include "AMateria.hpp"
 #include <iostream>
 
 Cure::Cure()
@@ -8,7 +9,7 @@ Cure::Cure()
 }
 
 Cure::Cure(const Cure& other)
-  : AMateria(other)
+  : AMateria(other.type)
 {
   std::cout << "Cure Copy Constructor called\n";
 }

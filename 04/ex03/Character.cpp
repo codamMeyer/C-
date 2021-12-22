@@ -20,7 +20,7 @@ Character::Character(const Character& other)
   , maxItens(other.maxItens)
   , curIdx(other.curIdx)
 {
-  std::cout << "Copy Constructor called\n";
+  std::cout << "Character Copy Constructor called\n";
 
   deleteInventory();
   for (int i = 0; i < maxItens; ++i) {
@@ -32,7 +32,7 @@ Character::Character(const Character& other)
 
 Character::~Character()
 {
-  std::cout << "Destructor called\n";
+  std::cout << "Character Destructor called\n";
 
   deleteInventory();
 }

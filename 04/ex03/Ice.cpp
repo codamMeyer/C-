@@ -8,7 +8,7 @@ Ice::Ice()
 }
 
 Ice::Ice(const Ice& other)
-  : AMateria(other)
+  : AMateria(other.type)
 {
   std::cout << "Ice Copy Constructor called\n";
 }

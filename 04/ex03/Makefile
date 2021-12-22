@@ -1,22 +1,25 @@
 CC=clang++
-CFLAGS= -Wall -Werror -Wextra -std=c++98
+CFLAGS= -Wall -Werror -Wextra -std=c++98 -fsanitize=leak -fsanitize=address
 
-TEST_FLAGS=-Wl,-rpath=/usr/local/lib -lgtest -lgtest_main -lpthread -fsanitize=leak  -fsanitize=address
+TEST_FLAGS=-Wl,-rpath=/usr/local/lib -lgtest -lgtest_main -lpthread -fsanitize=leak -fsanitize=address
 
 NAME=materia
 
-HEADER_FILES = 		\
-	AMateria.hpp	\
-	ICharacter.hpp	\
-	Character.hpp	\
-	Ice.hpp			\
-	Cure.hpp		\
+HEADER_FILES = 			\
+	AMateria.hpp		\
+	ICharacter.hpp		\
+	IMateriaSource.hpp 	\
+	MateriaSource.hpp 	\
+	Character.hpp		\
+	Ice.hpp				\
+	Cure.hpp			\
 
-SRC_FILES=			\
-	AMateria.cpp	\
-	Character.cpp	\
-	Ice.cpp			\
-	Cure.cpp		\
+SRC_FILES=				\
+	AMateria.cpp		\
+	Character.cpp		\
+	MateriaSource.cpp 	\
+	Ice.cpp				\
+	Cure.cpp			\
 
 TEST=$(NAME)Test
 
