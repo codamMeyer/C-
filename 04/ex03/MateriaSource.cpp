@@ -18,21 +18,14 @@ MateriaSource::MateriaSource(const MateriaSource& other)
   , curIdx(other.curIdx)
 {
   std::cout << "MateriaSource Constructor called\n";
-  for (int i = 0; i < maxMaterias; ++i) {
-    if (other.knownMaterias[i] != NULL) {
-      knownMaterias[i] = other.knownMaterias[i]->clone();
-    }
-  }
+  deleteMaterias();
+  cloneKnownMaterias(other);
 }
 
 MateriaSource::~MateriaSource()
 {
   std::cout << "MateriaSource Constructor called\n";
-  for (int i = 0; i < maxMaterias; ++i) {
-    if (knownMaterias[i] != NULL) {
-      delete knownMaterias[i];
-    }
-  }
+  deleteMaterias();
 }
 
 MateriaSource&
@@ -40,17 +33,8 @@ MateriaSource::operator=(const MateriaSource& other)
 {
   this->curIdx = other.curIdx;
   this->maxMaterias = other.maxMaterias;
-  for (int i = 0; i < maxMaterias; ++i) {
-    if (knownMaterias[i] != NULL) {
-      delete knownMaterias[i];
-      knownMaterias[i] = NULL;
-    }
-  }
-  for (int i = 0; i < maxMaterias; ++i) {
-    if (other.knownMaterias[i] != NULL) {
-      knownMaterias[i] = other.knownMaterias[i]->clone();
-    }
-  }
+  deleteMaterias();
+  cloneKnownMaterias(other);
   return *this;
 }
 
@@ -72,4 +56,25 @@ MateriaSource::createMateria(std::string const& type)
     }
   }
   return NULL;
+}
+
+void
+MateriaSource::deleteMaterias()
+{
+  for (int i = 0; i < maxMaterias; ++i) {
+    if (knownMaterias[i] != NULL) {
+      delete knownMaterias[i];
+      knownMaterias[i] = NULL;
+    }
+  }
+}
+
+void
+MateriaSource::cloneKnownMaterias(const MateriaSource& other)
+{
+  for (int i = 0; i < maxMaterias; ++i) {
+    if (other.knownMaterias[i] != NULL) {
+      knownMaterias[i] = other.knownMaterias[i]->clone();
+    }
+  }
 }

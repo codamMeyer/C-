@@ -18,6 +18,9 @@ private:
   int maxMaterias;
   int curIdx;
   AMateria* knownMaterias[4];
+
+  void deleteMaterias();
+  void cloneKnownMaterias(const MateriaSource& other);
 };
 
 #endif // MATERIASOURCE_H

@@ -23,11 +23,7 @@ Character::Character(const Character& other)
   std::cout << "Character Copy Constructor called\n";
 
   deleteInventory();
-  for (int i = 0; i < maxItens; ++i) {
-    if (other.inventory[i] != NULL) {
-      inventory[i] = other.inventory[i]->clone();
-    }
-  }
+  cloneInventory(other);
 }
 
 Character::~Character()
@@ -45,11 +41,7 @@ Character::operator=(const Character& other)
   maxItens = other.maxItens;
   curIdx = other.curIdx;
   deleteInventory();
-  for (int i = 0; i < maxItens; ++i) {
-    if (other.inventory[i]) {
-      inventory[i] = other.inventory[i]->clone();
-    }
-  }
+  cloneInventory(other);
   return *this;
 }
 
@@ -60,6 +52,16 @@ Character::deleteInventory()
     if (inventory[i] != NULL) {
       delete inventory[i];
       inventory[i] = NULL;
+    }
+  }
+}
+
+void
+Character::cloneInventory(const Character& other)
+{
+  for (int i = 0; i < maxItens; ++i) {
+    if (other.inventory[i]) {
+      inventory[i] = other.inventory[i]->clone();
     }
   }
 }

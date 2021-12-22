@@ -24,6 +24,7 @@ private:
   AMateria* inventory[4];
 
   void deleteInventory();
+  void cloneInventory(const Character& other);
 };
 
 #endif // CHARACTER_H
