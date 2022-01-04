@@ -8,7 +8,7 @@ Bureaucrat::Bureaucrat()
   , minGrade(150)
   , grade(1)
 {
-  std::cout << *this << " was created using deafault constructor\n";
+  std::cout << *this << " was created using default constructor\n";
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade)

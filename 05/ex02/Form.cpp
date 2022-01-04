@@ -99,6 +99,16 @@ Form::beSigned(const Bureaucrat& Bureaucrat)
   }
 }
 
+void
+Form::validateExecutionPermission(const Bureaucrat& bureaucrat) const
+{
+  if (!isSigned) {
+    throw Form::UnsignedFormException();
+  } else if (bureaucrat.getGrade() > requiredGradeToExecute) {
+    throw Form::GradeTooLowException();
+  }
+}
+
 const char*
 Form::GradeTooLowException::what() const throw()
 {
@@ -109,6 +119,12 @@ const char*
 Form::GradeTooHighException::what() const throw()
 {
   return ("Grade is too high");
+};
+
+const char*
+Form::UnsignedFormException::what() const throw()
+{
+  return ("Form is unsigned");
 };
 
 std::ostream&
