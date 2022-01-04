@@ -6,6 +6,7 @@
 class Character : public ICharacter
 {
 public:
+  Character();
   Character(const std::string& name);
   Character(const Character& other);
   ~Character();

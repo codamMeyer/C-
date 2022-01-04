@@ -2,6 +2,18 @@
 #include "ICharacter.hpp"
 #include <iostream>
 
+Character::Character()
+  : ICharacter()
+  , name("Annonymous")
+  , maxItens(4)
+  , curIdx(0)
+{
+  std::cout << "Character Default Constructor called\n";
+  for (int i = 0; i < maxItens; ++i) {
+    inventory[i] = NULL;
+  }
+}
+
 Character::Character(const std::string& name)
   : ICharacter()
   , name(name)

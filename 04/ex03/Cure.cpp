@@ -22,8 +22,7 @@ Cure::~Cure()
 AMateria*
 Cure::clone() const
 {
-  AMateria* clone = new Cure(*this);
-  return clone;
+  return new Cure(*this);
 }
 
 void
