@@ -61,7 +61,7 @@ TEST(Bureaucrat, notAbleToSign)
   Form sillyForm("Silly Form", 15, 5);
 
   try {
-    sillyForm.beSigned(bill);
+    bill.signForm(sillyForm);
   } catch (std::exception& e) {
     ASSERT_FALSE(sillyForm.getSignedBoolStatus());
   }
@@ -72,6 +72,6 @@ TEST(Bureaucrat, AbleToSign)
   Bureaucrat bill("Bill", 2);
   Form sillyForm("Silly Form", 15, 5);
 
-  sillyForm.beSigned(bill);
+  bill.signForm(sillyForm);
   ASSERT_TRUE(sillyForm.getSignedBoolStatus());
 }

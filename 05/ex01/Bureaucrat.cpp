@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include <iostream>
 
 Bureaucrat::Bureaucrat()
@@ -62,6 +63,18 @@ void
 Bureaucrat::decrementGrade()
 {
   setGrade(grade + 1);
+}
+
+void
+Bureaucrat::signForm(Form& form)
+{
+  try {
+    form.beSigned(*this);
+    std::cout << *this << " signs " << form.getName() << std::endl;
+  } catch (const std::exception& e) {
+    std::cerr << this->name << " cannot sign " << form.getName()
+	      << " because: " << e.what() << '\n';
+  }
 }
 
 const char*

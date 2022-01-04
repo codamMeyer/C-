@@ -29,7 +29,7 @@ Form::Form(std::string name,
 	     requiredGradeToExecute < maxGrade) {
     throw(Form::GradeTooHighException());
   }
-  std::cout << *this << " was created using user defined constructor\n";
+  std::cout << *this << "Was created using user defined constructor\n";
 }
 
 Form::Form(const Form& other)
@@ -40,12 +40,12 @@ Form::Form(const Form& other)
   , maxGrade(1)
   , minGrade(150)
 {
-  std::cout << *this << " was created using copy constructor\n";
+  std::cout << *this << "Was created using copy constructor\n";
 }
 
 Form::~Form()
 {
-  std::cout << *this << " was destroyed\n";
+  std::cout << *this << "Was destroyed\n";
 }
 
 Form&
@@ -94,10 +94,7 @@ Form::beSigned(const Bureaucrat& Bureaucrat)
 {
   if (Bureaucrat.getGrade() <= requiredGradeToSign) {
     isSigned = true;
-    std::cout << Bureaucrat.getName() << " signs " << name << std::endl;
   } else {
-    std::cout << Bureaucrat.getName() << " cannot signs " << name
-	      << " because his grade is too low\n";
     throw Form::GradeTooLowException();
   }
 }
