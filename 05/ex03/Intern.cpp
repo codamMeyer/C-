@@ -29,7 +29,7 @@ Intern::makeForm(std::string formName, std::string target)
       return availableForms[i].generate(target);
     }
   }
-  std::cout << "Form not found!\nAvailable Options:\n";
+  std::cout << formName << ": form not found!\nAvailable Options:\n";
   for (int i = 0; i < numForms; ++i) {
     std::cout << "  - " << availableForms[i].name << "\n";
   }

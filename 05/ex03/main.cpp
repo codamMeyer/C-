@@ -11,4 +11,6 @@ main()
   Intern randomIntern;
   Form* ref = randomIntern.makeForm("robotomy request", "Dave");
   delete ref;
+  ref = randomIntern.makeForm("invalid form", "Dave");
+  delete ref;
 }
