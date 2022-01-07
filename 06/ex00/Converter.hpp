@@ -31,6 +31,7 @@ private:
   const std::string str;
 
   bool isSpecialCase();
+  bool isIntMinOrMax(long long int i);
 };
 
 #endif // CONVERTER_H

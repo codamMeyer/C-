@@ -45,7 +45,7 @@ Converter::operator int()
   }
   long long i;
   std::istringstream(str) >> i;
-  if (i > 2147483647 || i < -2147483647 - 1) {
+  if (isIntMinOrMax(i)) {
     throw ImpossibleConversionExepction();
   }
   return i;
@@ -58,7 +58,7 @@ Converter::operator float()
   }
   long long int i;
   std::istringstream(str) >> i;
-  if (i > 2147483647 || i < -2147483647 - 1) {
+  if (isIntMinOrMax(i)) {
     throw ImpossibleConversionExepction();
   }
   return static_cast<float>(i);
@@ -71,7 +71,7 @@ Converter::operator double()
   }
   long long int i;
   std::istringstream(str) >> i;
-  if (i > 2147483647 || i < -2147483647 - 1) {
+  if (isIntMinOrMax(i)) {
     throw ImpossibleConversionExepction();
   }
   return static_cast<double>(i);
@@ -107,4 +107,10 @@ Converter::isSpecialCase()
     }
   }
   return false;
+}
+
+bool
+Converter::isIntMinOrMax(long long int i)
+{
+  return (i > 2147483647 || i < -2147483647 - 1);
 }
