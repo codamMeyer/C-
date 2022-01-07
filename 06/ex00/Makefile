@@ -1,7 +1,7 @@
 CC=clang++
 CFLAGS= -Wall -Werror -Wextra -std=c++98
 
-TEST_FLAGS=-Wl,-rpath=/usr/local/lib -lgtest -lgtest_main -lpthread
+TEST_FLAGS=-Wl,-rpath=/usr/local/lib -lgtest -lgtest_main -lpthread -O0 -ggdb
 
 NAME=converter
 

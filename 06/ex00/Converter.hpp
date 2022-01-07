@@ -30,8 +30,11 @@ public:
 private:
   const std::string str;
 
-  bool isSpecialCase();
+  bool isNaN();
+  bool isPosInf();
+  bool isNegInf();
   bool isIntMinOrMax(long long int i);
+  bool isFloatMinOrMax(double i);
 };
 
 #endif // CONVERTER_H

@@ -1,6 +1,7 @@
 #include "Converter.hpp"
 #include <iostream>
 #include <iterator>
+#include <limits>
 #include <math.h>
 #include <sstream>
 
@@ -27,7 +28,7 @@ Converter::operator=(const Converter&)
 Converter::operator char()
 {
   const int long long intRep = atoi(str.data());
-  if (isSpecialCase()) {
+  if (isNaN() || isNegInf() || isPosInf()) {
     throw ImpossibleConversionExepction();
   } else if (intRep >= 0 && intRep <= 33 && intRep < 127) {
     throw NonDisplayableConversionExepction();
@@ -40,7 +41,10 @@ Converter::operator char()
 
 Converter::operator int()
 {
-  if (isSpecialCase()) {
+  if (isNaN()) {
+    throw ImpossibleConversionExepction();
+  }
+  if (isPosInf() || isNegInf()) {
     throw ImpossibleConversionExepction();
   }
   long long i;
@@ -53,12 +57,19 @@ Converter::operator int()
 
 Converter::operator float()
 {
-  if (isSpecialCase()) {
-    return nanf("nanf");
+  if (isNaN()) {
+    return std::numeric_limits<float>::quiet_NaN();
   }
-  long long int i;
+  if (isPosInf()) {
+    return std::numeric_limits<float>::infinity();
+  }
+  if (isNegInf()) {
+    return -std::numeric_limits<float>::infinity();
+  }
+
+  double i;
   std::istringstream(str) >> i;
-  if (isIntMinOrMax(i)) {
+  if (isFloatMinOrMax(i)) {
     throw ImpossibleConversionExepction();
   }
   return static_cast<float>(i);
@@ -66,15 +77,22 @@ Converter::operator float()
 
 Converter::operator double()
 {
-  if (isSpecialCase()) {
-    return nan("nan");
+  if (isNaN()) {
+    return std::numeric_limits<double>::quiet_NaN();
   }
-  long long int i;
+  if (isPosInf()) {
+    return std::numeric_limits<float>::infinity();
+  }
+  if (isNegInf()) {
+    return -std::numeric_limits<float>::infinity();
+  }
+
+  double i;
   std::istringstream(str) >> i;
-  if (isIntMinOrMax(i)) {
+  if (isFloatMinOrMax(i)) {
     throw ImpossibleConversionExepction();
   }
-  return static_cast<double>(i);
+  return (i);
 }
 
 const char*
@@ -90,19 +108,36 @@ Converter::NonDisplayableConversionExepction ::what() const throw()
 };
 
 bool
-Converter::isSpecialCase()
+Converter::isNaN()
+{
+  if (str.compare("nan") == 0) {
+    return true;
+  } else if (str.compare("nanf") == 0) {
+    return true;
+  }
+  return false;
+}
+
+bool
+Converter::isPosInf()
 {
   static const int size = 4;
-  static const std::string special_doubles[size] = {
-    "inf", "+inf", "-inf", "nan"
-  };
-  static const std::string special_floats[size] = {
-    "inff", "+inff", "-inff", "nanf"
-  };
+  static const std::string special[size] = { "inf", "+inf", "inff", "+inff" };
   for (int i = 0; i < size; ++i) {
-    if (str.compare(special_doubles[i]) == 0) {
+    if (str.compare(special[i]) == 0) {
       return true;
-    } else if (str.compare(special_floats[i]) == 0) {
+    }
+  }
+  return false;
+}
+
+bool
+Converter::isNegInf()
+{
+  static const int size = 2;
+  static const std::string special[size] = { "-inff", "-inf" };
+  for (int i = 0; i < size; ++i) {
+    if (str.compare(special[i]) == 0) {
       return true;
     }
   }
@@ -112,5 +147,13 @@ Converter::isSpecialCase()
 bool
 Converter::isIntMinOrMax(long long int i)
 {
-  return (i > 2147483647 || i < -2147483647 - 1);
+  return (i > std::numeric_limits<int>::max() ||
+	  i < std::numeric_limits<int>::min());
+}
+
+bool
+Converter::isFloatMinOrMax(double i)
+{
+  const float lowest = -3.40282e+38;
+  return (i > std::numeric_limits<float>::max() || i < lowest);
 }
