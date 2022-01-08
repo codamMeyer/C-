@@ -33,8 +33,9 @@ private:
   bool isNaN() const;
   bool isPosInf() const;
   bool isNegInf() const;
-  bool isIntMinOrMax(long long int i) const;
+  bool isIntMinOrMax(long int i) const;
   bool isFloatMinOrMax(double i) const;
 };
 
 #endif // CONVERTER_H
+

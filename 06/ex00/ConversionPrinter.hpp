@@ -19,7 +19,7 @@ private:
   void printInt() const;
   void printFloat() const;
   void printDouble() const;
-  
+
   Converter converter;
 };
 

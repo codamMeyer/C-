@@ -27,7 +27,7 @@ Converter::operator=(const Converter&)
 
 Converter::operator char() const
 {
-  const int long long intRep = atoi(str.data());
+  const int long intRep = atoi(str.data());
   if (isNaN() || isNegInf() || isPosInf()) {
     throw ImpossibleConversionExepction();
   } else if (intRep >= 0 && intRep <= 33 && intRep < 127) {
@@ -48,12 +48,12 @@ Converter::operator int() const
     throw ImpossibleConversionExepction();
   }
 
-  long long i;
+  long int i;
   std::istringstream(str) >> i;
   if (isIntMinOrMax(i)) {
     throw ImpossibleConversionExepction();
   }
-  return i;
+  return static_cast<int>(i);
 }
 
 Converter::operator float() const
@@ -106,7 +106,7 @@ const char*
 Converter::NonDisplayableConversionExepction ::what() const throw()
 {
   return ("Non displayable");
-};
+}
 
 bool
 Converter::isNaN() const
@@ -146,7 +146,7 @@ Converter::isNegInf() const
 }
 
 bool
-Converter::isIntMinOrMax(long long int i) const
+Converter::isIntMinOrMax(long int i) const
 {
   return (i > std::numeric_limits<int>::max() ||
 	  i < std::numeric_limits<int>::min());
