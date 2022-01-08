@@ -5,11 +5,13 @@ TEST_FLAGS=-Wl,-rpath=/usr/local/lib -lgtest -lgtest_main -lpthread -O0 -ggdb
 
 NAME=converter
 
-HEADER_FILES = 		\
-	Converter.hpp		\
+HEADER_FILES = 						\
+	Converter.hpp						\
+	ConversionPrinter.hpp		\
 
-SRC_FILES=				\
-	Converter.cpp		\
+SRC_FILES=								\
+	Converter.cpp						\
+	ConversionPrinter.cpp		\
 
 TEST=$(NAME)Test
 

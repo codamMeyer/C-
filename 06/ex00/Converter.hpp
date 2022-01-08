@@ -11,10 +11,10 @@ public:
   ~Converter();
 
   Converter& operator=(const Converter& other);
-  operator char();
-  operator int();
-  operator float();
-  operator double();
+  operator char() const;
+  operator int() const;
+  operator float() const;
+  operator double() const;
 
   class ImpossibleConversionExepction : public std::exception
   {
@@ -30,11 +30,11 @@ public:
 private:
   const std::string str;
 
-  bool isNaN();
-  bool isPosInf();
-  bool isNegInf();
-  bool isIntMinOrMax(long long int i);
-  bool isFloatMinOrMax(double i);
+  bool isNaN() const;
+  bool isPosInf() const;
+  bool isNegInf() const;
+  bool isIntMinOrMax(long long int i) const;
+  bool isFloatMinOrMax(double i) const;
 };
 
 #endif // CONVERTER_H

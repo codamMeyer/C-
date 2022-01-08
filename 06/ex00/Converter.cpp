@@ -25,7 +25,7 @@ Converter::operator=(const Converter&)
   return *this;
 }
 
-Converter::operator char()
+Converter::operator char() const
 {
   const int long long intRep = atoi(str.data());
   if (isNaN() || isNegInf() || isPosInf()) {
@@ -39,7 +39,7 @@ Converter::operator char()
   return static_cast<char>(intRep);
 }
 
-Converter::operator int()
+Converter::operator int() const
 {
   if (isNaN()) {
     throw ImpossibleConversionExepction();
@@ -47,6 +47,7 @@ Converter::operator int()
   if (isPosInf() || isNegInf()) {
     throw ImpossibleConversionExepction();
   }
+
   long long i;
   std::istringstream(str) >> i;
   if (isIntMinOrMax(i)) {
@@ -55,7 +56,7 @@ Converter::operator int()
   return i;
 }
 
-Converter::operator float()
+Converter::operator float() const
 {
   if (isNaN()) {
     return std::numeric_limits<float>::quiet_NaN();
@@ -75,7 +76,7 @@ Converter::operator float()
   return static_cast<float>(i);
 }
 
-Converter::operator double()
+Converter::operator double() const
 {
   if (isNaN()) {
     return std::numeric_limits<double>::quiet_NaN();
@@ -108,7 +109,7 @@ Converter::NonDisplayableConversionExepction ::what() const throw()
 };
 
 bool
-Converter::isNaN()
+Converter::isNaN() const
 {
   if (str.compare("nan") == 0) {
     return true;
@@ -119,7 +120,7 @@ Converter::isNaN()
 }
 
 bool
-Converter::isPosInf()
+Converter::isPosInf() const
 {
   static const int size = 4;
   static const std::string special[size] = { "inf", "+inf", "inff", "+inff" };
@@ -132,7 +133,7 @@ Converter::isPosInf()
 }
 
 bool
-Converter::isNegInf()
+Converter::isNegInf() const
 {
   static const int size = 2;
   static const std::string special[size] = { "-inff", "-inf" };
@@ -145,14 +146,14 @@ Converter::isNegInf()
 }
 
 bool
-Converter::isIntMinOrMax(long long int i)
+Converter::isIntMinOrMax(long long int i) const
 {
   return (i > std::numeric_limits<int>::max() ||
 	  i < std::numeric_limits<int>::min());
 }
 
 bool
-Converter::isFloatMinOrMax(double i)
+Converter::isFloatMinOrMax(double i) const
 {
   const float lowest = -3.40282e+38;
   return (i > std::numeric_limits<float>::max() || i < lowest);
