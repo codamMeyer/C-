@@ -13,6 +13,8 @@ main()
   assert(a.id == b->id);
   assert(a.name == b->name);
 
+  std::cout << "rawData: " << rawData << std::endl;
+
   std::cout << "a address: " << &a << "\na id: " << a.id
 	    << "\na name: " << a.name << std::endl;
   std::cout << "b address: " << b << "\nb id: " << b->id
