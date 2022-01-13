@@ -41,12 +41,17 @@ Span::shortestSpan() const
     throw std::out_of_range("Not enough elements");
   }
 
+  int lhs = 0;
+  int rhs = 0;
   int shortestSpan = std::numeric_limits<int>::max();
   for (iterator it = elements.begin(); it != --elements.end();) {
-    const int lhs = *it;
-    const int rhs = *(++it);
+    lhs = *it;
+    rhs = *(++it);
     shortestSpan = std::min(shortestSpan, rhs - lhs);
   }
+  // std::cout << "Shortest span is the diff of " << lhs << " and " << rhs << ":
+  // "
+  //     << shortestSpan;
 
   return shortestSpan;
 }
@@ -59,7 +64,8 @@ Span::longestSpan() const
   }
   const int first = *elements.begin();
   const int last = *(--elements.end());
-
+  // std::cout << "Longest span is the diff of " << last << " and " << first
+  //     << ": " << last - first;
   return last - first;
 }
 
