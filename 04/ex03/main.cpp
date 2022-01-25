@@ -16,7 +16,6 @@ printTitle(std::string title)
 int
 main()
 {
-
   printTitle("\nCreating MateriaSource");
   IMateriaSource* src = new MateriaSource();
 

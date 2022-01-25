@@ -1,31 +1,30 @@
 #include "Animal.hpp"
-
 #include <iostream>
 
 Animal::Animal()
   : type("Animal")
   , os(std::cout)
 {
-  os << "Default constructor of Animal called.\n";
+  os << "Animal default constructor called.\n";
 }
 
 Animal::Animal(std::ostream& os)
   : type("Animal")
   , os(os)
 {
-  os << "User-defined constructor of Animal called.\n";
+  os << "Animal user-defined constructor called.\n";
 }
 
 Animal::Animal(const Animal& other)
   : type(other.type)
   , os(other.os)
 {
-  os << "Copy constructor of Animal called.\n";
+  os << "Animal copy constructor called.\n";
 }
 
 Animal::~Animal()
 {
-  os << "Desstructor of Animal called.\n";
+  os << "Animal destructor called.\n";
 }
 
 Animal&

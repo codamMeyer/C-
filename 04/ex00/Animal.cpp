@@ -6,26 +6,26 @@ Animal::Animal()
   : type("Generic Animal")
   , os(std::cout)
 {
-  os << "Default constructor of " << type << " called.\n";
+  os << "Animal default constructor called.\n";
 }
 
 Animal::Animal(std::ostream& os)
   : type("Generic Animal")
   , os(os)
 {
-  os << "User-defined constructor of " << type << " called.\n";
+  os << "Animal user-defined constructor called.\n";
 }
 
 Animal::Animal(const Animal& other)
   : type(other.type)
   , os(other.os)
 {
-  os << "Copy constructor of " << type << " called.\n";
+  os << "Animal copy constructor called.\n";
 }
 
 Animal::~Animal()
 {
-  os << "Desstructor of " << type << " called.\n";
+  os << "Animal Destructor called.\n";
 }
 
 Animal&

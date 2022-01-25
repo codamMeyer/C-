@@ -4,27 +4,26 @@ Dog::Dog()
   : Animal()
 {
   type = "Dog";
-  os << "Default constructor of " << type << " called.\n";
+  os << "Dog default constructor called.\n";
 }
 
 Dog::Dog(std::ostream& os)
   : Animal(os)
 {
   type = "Dog";
-  os << "Default constructor of " << type << " called.\n";
+  os << "Dog default constructor called.\n";
 }
 
 Dog::Dog(const Dog& other)
   : Animal(other)
 {
-  type = "Dog";
-  os << "Default constructor of " << type << " called.\n";
+  type = other.type;
+  os << "Dog copy constructor called.\n";
 }
 
 Dog::~Dog()
 {
-  type = "Dog";
-  os << "Default constructor of " << type << " called.\n";
+  os << "Dog destructor called.\n";
 }
 
 void

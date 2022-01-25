@@ -20,7 +20,7 @@ Character::Character(const std::string& name)
   , maxItens(4)
   , curIdx(0)
 {
-  std::cout << "Character Constructor called\n";
+  std::cout << "Character user-defined constructor called\n";
   for (int i = 0; i < maxItens; ++i) {
     inventory[i] = NULL;
   }

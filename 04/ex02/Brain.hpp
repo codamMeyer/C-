@@ -15,8 +15,8 @@ public:
 
 private:
   int nextIdea;
-  static const int maxIdeas = 100;
-  std::string ideas[maxIdeas];
+  int maxIdeas;
+  std::string ideas[100];
 };
 
 #endif // BRAIN_H

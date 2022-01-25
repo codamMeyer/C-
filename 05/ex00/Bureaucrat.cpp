@@ -19,11 +19,11 @@ Bureaucrat::Bureaucrat(std::string name, int grade)
   std::cout << *this << " was created using user defined constructor\n";
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& Bureaucrat)
-  : name(Bureaucrat.name)
-  , maxGrade(Bureaucrat.maxGrade)
-  , minGrade(Bureaucrat.minGrade)
-  , grade(Bureaucrat.grade)
+Bureaucrat::Bureaucrat(const Bureaucrat& other)
+  : name(other.name)
+  , maxGrade(other.maxGrade)
+  , minGrade(other.minGrade)
+  , grade(other.grade)
 {
   std::cout << *this << " was created using copy constructor\n";
 }

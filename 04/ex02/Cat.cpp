@@ -5,7 +5,7 @@ Cat::Cat()
   , brain(new Brain())
 {
   type = "Cat";
-  os << "Default constructor of " << type << " called.\n";
+  os << "Cat default constructor called.\n";
 }
 
 Cat::Cat(std::ostream& os)
@@ -13,7 +13,7 @@ Cat::Cat(std::ostream& os)
   , brain(new Brain())
 {
   type = "Cat";
-  os << "Default constructor of " << type << " called.\n";
+  os << "Cat default constructor called.\n";
 }
 
 Cat::Cat(const Cat& other)
@@ -21,13 +21,12 @@ Cat::Cat(const Cat& other)
   , brain(new Brain(*(other.brain)))
 {
   type = "Cat";
-  os << "Default constructor of " << type << " called.\n";
+  os << "Cat copy constructor called.\n";
 }
 
 Cat::~Cat()
 {
-  type = "Cat";
-  os << "Destructor of " << type << " called.\n";
+  os << "Cat destructor called.\n";
   delete brain;
 }
 

@@ -6,8 +6,11 @@
 int
 main()
 {
+  std::cout << "\nCreating a Dog:\n";
   const Dog* dog = new Dog();
+  std::cout << "\nCreating a Cat:\n";
   const Cat* cat = new Cat();
+  std::cout << "\nCreating a copy of Cat:\n";
   const Cat copyCat(*cat);
 
   std::cout << "\n\n\nMake them think:\n\n";
@@ -22,6 +25,7 @@ main()
     dog->think();
     std::cout << std::endl;
   }
+
   std::cout << "\n\n";
   delete dog;
   delete cat;

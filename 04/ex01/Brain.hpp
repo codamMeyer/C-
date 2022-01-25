@@ -7,16 +7,14 @@ class Brain
 public:
   Brain();
   Brain(const Brain& other);
-  virtual ~Brain();
-
   Brain& operator=(const Brain& other);
-
+  virtual ~Brain();
   const std::string& getNextIdea();
 
 private:
   int nextIdea;
-  static const int maxIdeas = 100;
-  std::string ideas[maxIdeas];
+  int maxIdeas;
+  std::string ideas[100];
 };
 
 #endif // BRAIN_H
