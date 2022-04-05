@@ -25,6 +25,7 @@ TEST(ConverterToChar, impossibleConvertionNeg)
 	       Converter::ImpossibleConversionExepction);
 }
 
+
 TEST(ConverterToChar, impossibleConvertionInf)
 {
   EXPECT_THROW(std::cout << static_cast<char>(Converter("-inf")),
@@ -54,7 +55,14 @@ TEST(ConverterToChar, possibleConvertion)
   EXPECT_EQ(static_cast<char>(Converter("48")), '0');
 }
 
+TEST(ConverterToChar, convertCharLiteral)
+{
+  EXPECT_EQ(static_cast<char>(Converter("a")), 'a');
+}
+
+
 /////////////////// INT
+
 TEST(ConverterToInt, impossibleConvertionPos)
 {
   EXPECT_THROW(std::cout << static_cast<int>(Converter("23456789876543456789")),

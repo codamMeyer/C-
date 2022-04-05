@@ -1,9 +1,11 @@
 #include "Converter.hpp"
+#include <cctype>
 #include <iostream>
 #include <iterator>
 #include <limits>
 #include <math.h>
 #include <sstream>
+#include <sys/stat.h>
 
 Converter::Converter()
   : str("default")
@@ -11,7 +13,9 @@ Converter::Converter()
 
 Converter::Converter(const std::string string)
   : str(string)
-{}
+{
+	parse();
+}
 
 Converter::Converter(const Converter& other)
   : str(other.str)
@@ -27,7 +31,13 @@ Converter::operator=(const Converter&)
 
 Converter::operator char() const
 {
+	if (conversionTypes.activeType == CHAR)
+	{
+    return conversionTypes.types.c;
+	}
+
   const int long intRep = atoi(str.data());
+
   if (isNaN() || isNegInf() || isPosInf()) {
     throw ImpossibleConversionExepction();
   } else if (intRep >= 0 && intRep <= 33 && intRep < 127) {
@@ -157,4 +167,38 @@ Converter::isFloatMinOrMax(double i) const
 {
   const float lowest = -3.40282e+38;
   return (i > std::numeric_limits<float>::max() || i < lowest);
+}
+
+void Converter::parse()
+{
+  const bool isChar = str.length() == 1 && !std::isdigit(str[0]);
+  if (isChar)
+  {
+    conversionTypes.activeType = CHAR;
+    conversionTypes.types.c = str[0];
+  }
+
+//   switch (conversionTypes.activeType) {
+//   case Type::CHAR:
+//   	{
+// 		std::cout << "is CHAR \n";
+// 		break;
+//     }
+// 	case Type::INT:
+//   	{
+// 		std::cout << "is INT \n";
+// 		break;
+//     }
+// 	case Type::FLOAT:
+//   	{
+// 		std::cout << "is FLOAT \n";
+// 		break;
+//     }
+// 	case Type::DOUBLE:
+//   	{
+// 		std::cout << "is DOUBLE \n";
+// 		break;
+//     }
+//   }
+
 }
