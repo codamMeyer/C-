@@ -8,7 +8,6 @@ class Form;
 class Bureaucrat
 {
 public:
-  Bureaucrat();
   Bureaucrat(std::string name, int grade);
   Bureaucrat(const Bureaucrat& Bureaucrat);
   ~Bureaucrat();
@@ -35,6 +34,7 @@ public:
   };
 
 private:
+  Bureaucrat();
   const std::string name;
   const int maxGrade;
   const int minGrade;

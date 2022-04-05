@@ -5,31 +5,23 @@
 #include <iosfwd>
 #include <iostream>
 
-ShrubberyCreationForm::ShrubberyCreationForm()
-  : Form("Shrubbery Creation Form", 145, 137)
-  , target("default")
-  , fileName("default_shrubbery")
-{
-  std::cout << *this << " was created using default constructor\n";
-}
-
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
   : Form("Shrubbery Creation Form", 145, 137)
   , target(target)
   , fileName(target + "_shrubbery")
 {
-  std::cout << *this << " was created using user defined constructor\n";
+  std::cout << *this << "was created using user defined constructor\n";
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
   : Form(other)
 {
-  std::cout << *this << " was created using copy constructor\n";
+  std::cout << *this << "was created using copy constructor\n";
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
-  std::cout << *this << " was destroyed\n";
+  std::cout << *this << "was destroyed\n";
 }
 
 ShrubberyCreationForm&
@@ -66,4 +58,12 @@ ShrubberyCreationForm::execute(Bureaucrat const& executor) const
     return;
   }
   file << tree;
+}
+
+ShrubberyCreationForm::ShrubberyCreationForm()
+  : Form("Shrubbery Creation Form", 145, 137)
+  , target("default")
+  , fileName("default_shrubbery")
+{
+  std::cout << *this << "was created using default constructor\n";
 }

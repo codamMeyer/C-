@@ -7,7 +7,6 @@
 class Form
 {
 public:
-  Form();
   Form(std::string name, int requiredGradeToSign, int requiredGradeToExecute);
   Form(const Form& other);
   virtual ~Form();
@@ -44,6 +43,8 @@ protected:
   void validateExecutionPermission(const Bureaucrat& bureaucrat) const;
 
 private:
+  Form();
+
   bool isSigned;
   const std::string name;
   const int requiredGradeToSign;

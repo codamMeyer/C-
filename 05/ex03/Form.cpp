@@ -2,17 +2,6 @@
 #include "Bureaucrat.hpp"
 #include <iostream>
 
-Form::Form()
-  : isSigned(false)
-  , name("default")
-  , requiredGradeToSign(1)
-  , requiredGradeToExecute(1)
-  , maxGrade(1)
-  , minGrade(150)
-{
-  std::cout << *this << " was created using default constructor\n";
-}
-
 Form::Form(std::string name,
 	   int requiredGradeToSign,
 	   int requiredGradeToExecute)
@@ -126,6 +115,17 @@ Form::UnsignedFormException::what() const throw()
 {
   return ("Form is unsigned");
 };
+
+Form::Form()
+  : isSigned(false)
+  , name("default")
+  , requiredGradeToSign(1)
+  , requiredGradeToExecute(1)
+  , maxGrade(1)
+  , minGrade(150)
+{
+  std::cout << *this << " was created using default constructor\n";
+}
 
 std::ostream&
 operator<<(std::ostream& os, const Form& Form)

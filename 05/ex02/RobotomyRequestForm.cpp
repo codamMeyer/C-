@@ -6,29 +6,22 @@
 #include <iosfwd>
 #include <iostream>
 
-RobotomyRequestForm::RobotomyRequestForm()
-  : Form("Robotomy Request Form", 72, 45)
-  , target("default")
-{
-  std::cout << *this << " was created using default constructor\n";
-}
-
 RobotomyRequestForm::RobotomyRequestForm(std::string target)
   : Form("Robotomy Request Form", 72, 45)
   , target(target)
 {
-  std::cout << *this << " was created using user defined constructor\n";
+  std::cout << *this << "was created using user defined constructor\n";
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
   : Form(other)
 {
-  std::cout << *this << " was created using copy constructor\n";
+  std::cout << *this << "was created using copy constructor\n";
 }
 
 RobotomyRequestForm::~RobotomyRequestForm()
 {
-  std::cout << *this << " was destroyed\n";
+  std::cout << *this << "was destroyed\n";
 }
 
 RobotomyRequestForm&
@@ -48,4 +41,11 @@ RobotomyRequestForm::execute(Bureaucrat const& executor) const
     std::cout << this->target << " has been robotomized successfully\n";
   } else
     std::cout << "robotomization failed\n";
+}
+
+RobotomyRequestForm::RobotomyRequestForm()
+  : Form("Robotomy Request Form", 72, 45)
+  , target("default")
+{
+  std::cout << *this << "was created using default constructor\n";
 }

@@ -7,7 +7,6 @@
 class Form
 {
 public:
-  Form();
   Form(std::string name, int requiredGradeToSign, int requiredGradeToExecute);
   Form(const Form& other);
   ~Form();
@@ -34,6 +33,8 @@ public:
   };
 
 private:
+  Form();
+  
   bool isSigned;
   const std::string name;
   const int requiredGradeToSign;

@@ -5,11 +5,10 @@
 void
 tryToCreateForm(std::string name, int gradeToSign, int gradeToExecute)
 {
+  std::cout << "\e[1;33m\n\nTrying to create form: " << name << "\n"
+	    << "Grade to sign: " << gradeToSign << "\n"
+	    << "Grade to execute: " << gradeToExecute << "\e[0m\n\n";
   try {
-    std::cout << "\n\nTrying to create form: " << name << "\n"
-	      << "Grade to sign: " << gradeToSign << "\n"
-	      << "Grade to execute: " << gradeToExecute << "\n\n";
-
     Form(name, gradeToSign, gradeToExecute);
   } catch (std::exception& e) {
     std::cout << "Execption message: " << e.what() << "\n\n";

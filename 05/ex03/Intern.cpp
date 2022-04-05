@@ -8,6 +8,7 @@ Intern::Intern()
 {
   std::cout << "Intern was created using default constructor\n";
   populatePairs();
+  avaiable[0] = &Intern::generateShrubberyCreationForm;
 }
 
 Intern::Intern(const Intern& other)
@@ -25,7 +26,7 @@ Form*
 Intern::makeForm(std::string formName, std::string target)
 {
   for (int i = 0; i < numForms; ++i) {
-    if (formName.compare(availableForms[i].name) == 0) {
+    if (formName == availableForms[i].name) {
       return availableForms[i].generate(target);
     }
   }

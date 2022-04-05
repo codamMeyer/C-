@@ -22,6 +22,8 @@ private:
     Intern::GenerateForm generate;
   };
 
+  Intern::GenerateForm avaiable[3];
+  
   static Form* generateShrubberyCreationForm(std::string target);
   static Form* generateRobotomyRequestForm(std::string target);
   static Form* generatePresidentialPardonForm(std::string target);

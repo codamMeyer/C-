@@ -69,9 +69,9 @@ Bureaucrat::setGrade(int grade)
 {
   if (grade < maxGrade) {
     throw Bureaucrat::GradeTooHighException();
-  } else if (grade > minGrade) {
+  }
+  if (grade > minGrade) {
     throw Bureaucrat::GradeTooLowException();
-  } else {
     this->grade = grade;
   }
 }
