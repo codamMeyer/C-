@@ -1,5 +1,6 @@
 #include "Converter.hpp"
 #include <cctype>
+#include <cstddef>
 #include <iostream>
 #include <iterator>
 #include <limits>
@@ -31,79 +32,161 @@ Converter::operator=(const Converter&)
 
 Converter::operator char() const
 {
-	if (conversionTypes.activeType == CHAR)
-	{
-    return conversionTypes.types.c;
-	}
-
-  const int long intRep = atoi(str.data());
-
-  if (isNaN() || isNegInf() || isPosInf()) {
-    throw ImpossibleConversionExepction();
-  } else if (intRep >= 0 && intRep <= 33 && intRep < 127) {
-    throw NonDisplayableConversionExepction();
-  } else if (intRep < 0 || intRep >= 127) {
-    throw ImpossibleConversionExepction();
+  switch (conversionTypes.activeType) {
+    case CHAR:{
+      return conversionTypes.types.c;
+    }
+    case INT:{
+      long int i;
+      std::istringstream(str) >> i;
+      if (isIntMinOrMax(i)) {
+        throw ImpossibleConversionExepction();
+      }
+      if (isNonDisplayableChar(conversionTypes.types.i)) {
+      throw NonDisplayableConversionExepction();
+      }
+      if (conversionTypes.types.i < 0 || conversionTypes.types.i >= 127) {
+      throw ImpossibleConversionExepction();
+      }
+      return static_cast<char>(conversionTypes.types.i);
+    }
+    case FLOAT:{
+      if (isNonDisplayableChar(conversionTypes.types.f)) {
+      throw NonDisplayableConversionExepction();
+      }
+      if (conversionTypes.types.f < 0 || conversionTypes.types.f >= 127) {
+      throw ImpossibleConversionExepction();
+      }
+      return static_cast<char>(conversionTypes.types.f);
+    }
+    case DOUBLE:{
+      if (isNonDisplayableChar(conversionTypes.types.d)) {
+      throw NonDisplayableConversionExepction();
+      }
+      if (conversionTypes.types.d < 0 || conversionTypes.types.d >= 127) {
+      throw ImpossibleConversionExepction();
+      }
+      return static_cast<char>(conversionTypes.types.d);
+    }
+    case IMPOSSIBLE:{
+      throw ImpossibleConversionExepction();  
+    }
   }
-
-  return static_cast<char>(intRep);
+  return static_cast<char>(str[0]);
 }
 
 Converter::operator int() const
 {
-  if (isNaN()) {
-    throw ImpossibleConversionExepction();
+  switch (conversionTypes.activeType) {
+    case CHAR:{
+      return static_cast<int>(conversionTypes.types.c);
+    }
+    case INT:{
+      return conversionTypes.types.i;
+    }
+    case FLOAT:{
+      long int i;
+      std::istringstream(str) >> i;
+      if (isIntMinOrMax(i)) {
+        throw ImpossibleConversionExepction();
+      }
+      return static_cast<int>(conversionTypes.types.f);
+    }
+    case DOUBLE:{
+      long int i;
+      std::istringstream(str) >> i;
+      if (isIntMinOrMax(i)) {
+        throw ImpossibleConversionExepction();
+      }
+      return static_cast<int>(conversionTypes.types.d);
+    }
+    case IMPOSSIBLE:{
+      throw ImpossibleConversionExepction();  
+    }
   }
-  if (isPosInf() || isNegInf()) {
-    throw ImpossibleConversionExepction();
-  }
-
-  long int i;
-  std::istringstream(str) >> i;
-  if (isIntMinOrMax(i)) {
-    throw ImpossibleConversionExepction();
-  }
-  return static_cast<int>(i);
+  return static_cast<int>(str[0]);
 }
 
 Converter::operator float() const
 {
-  if (isNaN()) {
-    return std::numeric_limits<float>::quiet_NaN();
+  switch (conversionTypes.activeType) {
+    case CHAR:{
+      return static_cast<float>(conversionTypes.types.c);
+    }
+    case INT:{
+      long int i;
+      std::istringstream(str) >> i;
+      if (isIntMinOrMax(i)) {
+        throw ImpossibleConversionExepction();
+      }
+      return static_cast<float>(conversionTypes.types.i);
+    }
+    case FLOAT:{
+      return conversionTypes.types.f;
+    }
+    case DOUBLE:{
+      double i;
+      std::istringstream(str) >> i;
+      if (isFloatMinOrMax(i)) {
+        throw ImpossibleConversionExepction();
+      }
+      return static_cast<float>(conversionTypes.types.d);
+    }
+    case IMPOSSIBLE:{
+      if (isNaN()) {
+        return std::numeric_limits<float>::quiet_NaN();
+      }
+      if (isPosInf()) {
+        return std::numeric_limits<float>::infinity();
+      }
+      if (isNegInf()) {
+        return -std::numeric_limits<float>::infinity();
+      }
+      throw ImpossibleConversionExepction();  
+    }
   }
-  if (isPosInf()) {
-    return std::numeric_limits<float>::infinity();
-  }
-  if (isNegInf()) {
-    return -std::numeric_limits<float>::infinity();
-  }
-
-  double i;
-  std::istringstream(str) >> i;
-  if (isFloatMinOrMax(i)) {
-    throw ImpossibleConversionExepction();
-  }
-  return static_cast<float>(i);
+  return static_cast<float>(str[0]);
 }
 
 Converter::operator double() const
 {
-  if (isNaN()) {
-    return std::numeric_limits<double>::quiet_NaN();
+  switch (conversionTypes.activeType) {
+    case CHAR:{
+      return static_cast<double>(conversionTypes.types.c);
+    }
+    case INT:{
+      long int i;
+      std::istringstream(str) >> i;
+      if (isIntMinOrMax(i)) {
+        throw ImpossibleConversionExepction();
+      }
+      return static_cast<double>(conversionTypes.types.i);
+    }
+    case FLOAT:{
+      return conversionTypes.types.f;
+    }
+    case DOUBLE:{
+      double i;
+      std::istringstream(str) >> i;
+      if (isFloatMinOrMax(i)) {
+        throw ImpossibleConversionExepction();
+      }
+      return static_cast<double>(conversionTypes.types.d);
+    }
+    case IMPOSSIBLE:{
+      if (isNaN()) {
+        return std::numeric_limits<double>::quiet_NaN();
+      }
+      if (isPosInf()) {
+        return std::numeric_limits<float>::infinity();
+      }
+      if (isNegInf()) {
+        return -std::numeric_limits<float>::infinity();
+      }
+      throw ImpossibleConversionExepction();  
+    }
   }
-  if (isPosInf()) {
-    return std::numeric_limits<float>::infinity();
-  }
-  if (isNegInf()) {
-    return -std::numeric_limits<float>::infinity();
-  }
-
-  double i;
-  std::istringstream(str) >> i;
-  if (isFloatMinOrMax(i)) {
-    throw ImpossibleConversionExepction();
-  }
-  return (i);
+  return static_cast<double>(str[0]);
 }
 
 const char*
@@ -169,36 +252,136 @@ Converter::isFloatMinOrMax(double i) const
   return (i > std::numeric_limits<float>::max() || i < lowest);
 }
 
+bool Converter::isChar()
+{
+  return str.length() == 1 && !std::isdigit(str[0]);
+}
+
+bool Converter::isInt()
+{
+  if (str.length() > 11)
+  {
+    return false;
+  }
+  for (std::size_t i = 0; i < str.length(); ++i)
+  {
+    if (i == 0 && (str[i] == '+' || str[i] == '-'))
+    {
+      ++i;
+    }
+    if (!std::isdigit(str[i]))
+    {
+      return false;
+    }
+  }
+  return true;
+}
+
+bool Converter::isFloat()
+{
+  const size_t len = str.length();
+  if (len < 2)
+  {
+    return false;
+  }
+
+  bool hasOneFloatPoint = false;
+  bool endsWithOneF =  (str[len - 1] == 'f');
+ 
+  for (std::size_t i = 0; i < len - 1; ++i)
+  {
+    if (i == 0 && (str[i] == '+' || str[i] == '-'))
+    {
+      ++i;
+    }
+    if (str[i] == '.')
+    {
+      if (hasOneFloatPoint)
+      {
+        hasOneFloatPoint = false;
+        return false;
+      }
+      else {
+        hasOneFloatPoint = true;
+      }
+    }
+    else if (!std::isdigit(str[i]))
+    {
+      return false;
+    }
+  }
+  return endsWithOneF && hasOneFloatPoint;
+}
+
+bool Converter::isDouble()
+{
+  const size_t len = str.length();
+  if (len < 2)
+  {
+    return false;
+  }
+
+  bool hasOneFloatPoint = false;
+ 
+  for (std::size_t i = 0; i < len; ++i)
+  {
+    if (i == 0 && (str[i] == '+' || str[i] == '-'))
+    {
+      ++i;
+    }
+    if (str[i] == '.')
+    {
+      if (hasOneFloatPoint)
+      {
+        hasOneFloatPoint = false;
+        return false;
+      }
+      else {
+        hasOneFloatPoint = true;
+      }
+    }
+    else if (!std::isdigit(str[i]))
+    {
+      return false;
+    }
+  }
+  return hasOneFloatPoint;
+}
+
+
+bool Converter::isNonDisplayableChar(int i) const
+{
+  return (i >= 0 && i <= 31 && i < 127);
+}
+
 void Converter::parse()
 {
-  const bool isChar = str.length() == 1 && !std::isdigit(str[0]);
-  if (isChar)
+  if (isChar())
   {
     conversionTypes.activeType = CHAR;
     conversionTypes.types.c = str[0];
+    return ;
+  }
+  
+  if (isInt())
+  {
+    conversionTypes.activeType = INT;
+    std::stringstream(str) >> conversionTypes.types.i;
+    return ;
   }
 
-//   switch (conversionTypes.activeType) {
-//   case Type::CHAR:
-//   	{
-// 		std::cout << "is CHAR \n";
-// 		break;
-//     }
-// 	case Type::INT:
-//   	{
-// 		std::cout << "is INT \n";
-// 		break;
-//     }
-// 	case Type::FLOAT:
-//   	{
-// 		std::cout << "is FLOAT \n";
-// 		break;
-//     }
-// 	case Type::DOUBLE:
-//   	{
-// 		std::cout << "is DOUBLE \n";
-// 		break;
-//     }
-//   }
+  if (isFloat())
+  {
+    conversionTypes.activeType = FLOAT;
+    std::stringstream(str) >> conversionTypes.types.f;
+    return ;
+  }
+  if (isDouble())
+  {
+    conversionTypes.activeType = DOUBLE;
+    std::stringstream(str) >> conversionTypes.types.d;
+    return ;
+  }
+  conversionTypes.activeType = IMPOSSIBLE;
 
 }

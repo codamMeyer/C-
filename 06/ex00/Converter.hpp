@@ -8,12 +8,13 @@ class Converter
     CHAR,
     INT,
     FLOAT,
-    DOUBLE
+    DOUBLE,
+    IMPOSSIBLE
   };
 
   union Types {
     char c;
-    int i;
+    long int i;
     float f;
     double d;
   };
@@ -57,6 +58,11 @@ private:
   bool isIntMinOrMax(long int i) const;
   bool isFloatMinOrMax(double i) const;
 
+  bool isChar();
+  bool isInt();
+  bool isFloat();
+  bool isDouble();
+  bool isNonDisplayableChar(int i) const;
   void parse();
 };
 

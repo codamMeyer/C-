@@ -37,7 +37,7 @@ ConversionPrinter::printChar() const
 {
   std::cout << "char: ";
   try {
-    std::cout << static_cast<char>(converter) << '\n';
+    std::cout << static_cast<char>(converter) << "\n";
   } catch (const std::exception& e) {
     std::cerr << e.what() << '\n';
   }
