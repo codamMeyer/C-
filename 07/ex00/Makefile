@@ -3,8 +3,7 @@ CFLAGS= -Wall -Werror -Wextra -std=c++98 -pedantic
 
 NAME=templates
 
-HEADER_FILES = 						\
-	whatever.hpp						\
+HEADER_FILES = whatever.hpp
 
 all: $(NAME)
 

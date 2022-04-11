@@ -2,44 +2,68 @@
 #include <assert.h>
 #include <iostream>
 #include <string>
+#include <stdlib.h>
+
+template<typename T>
+void printArray(const T& array, const std::string& name)
+{
+  std::cout << "\n" << name;
+  for (int i = 0; i < array.size(); ++i)
+  {
+    std::cout << array[i] << " ";  
+  }
+  std::cout << "\n";
+}
+
+template<typename T>
+void testOutOfRange(T& array)
+{
+  try {
+    std::cout << "\ntry: array[-2]\n";
+    std::cout << array[-2] << std::endl;
+  } catch (const std::exception &e) {
+    std::cout << e.what() << std::endl;
+  }
+
+  try {
+    std::cout << "\ntry: array[array.size()]\n";
+    std::cout << array[array.size()] << std::endl;
+  } catch (const std::exception &e) {
+    std::cout << e.what() << std::endl;
+  }
+}
 
 int
 main()
 {
   const int size = 5;
-  Array<int> array(size);
-  Array<int> copy(array);
-  assert(array.size() == size);
-  assert(copy.size() == size);
-  std::cout << "Array content: ";
-  for (int i = 0; i < size; ++i) {
-    array[i] = i;
-    std::cout << array[i] << " ";
-  }
-  std::cout << "\nCopy content: ";
+  Array<int> original(size);
+  Array<int> copy(original);
 
-  // checking if copy array isn't modified
-  for (int i = 0; i < size; ++i) {
-    assert(copy[i] == 0);
-    std::cout << copy[i] << " ";
+  printArray(original, "original int array: ");
+  printArray(copy, "copy int array: ");
+
+  for (int i = 0; i < size; ++i) { // setting values of original array
+    original[i] = i + 10;
   }
-  std::cout << "\n";
+
+  printArray(original, "original int array: ");
+  printArray(copy, "copy int array: ");
+
+  testOutOfRange(original);
 
   Array<std::string> arrayStr(size);
   Array<std::string> copyStr(arrayStr);
-  assert(arrayStr.size() == size);
-  assert(copyStr.size() == size);
-  std::cout << "ArrayStr content: ";
-  for (int i = 0; i < size; ++i) {
-    arrayStr[i] = "apple";
-    std::cout << arrayStr[i] << " ";
-  }
-  std::cout << "\nCopyStr content: ";
 
-  // checking if copyStr array isn't modified
-  for (int i = 0; i < size; ++i) {
-    assert(copyStr[i] == "\0");
-    std::cout << copyStr[i] << " ";
+  printArray(arrayStr, "original string array: ");
+  printArray(copyStr, "copy string array: ");
+
+  for (int i = 0; i < size; ++i) { // setting values of copy array
+    copyStr[i] = "apples";
   }
-  std::cout << "\n";
+
+  printArray(arrayStr, "original string array: ");
+  printArray(copyStr, "copy string array: ");
+
+  testOutOfRange(arrayStr);
 }
